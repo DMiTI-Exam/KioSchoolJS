@@ -27,15 +27,15 @@ export class Vertex {
     /**
      * Получает идентификатор
      */
-    getId() {
+    idGetter() {
         return this.#id;
     }
 
-    isLabeled() {
+    labeledGetter() {
         return this.#labeled;
     }
 
-    setLabeled(labeled) {
+    labeledSetter(labeled) {
         this.#labeled = labeled;
     }
 
@@ -48,7 +48,7 @@ export class Vertex {
     /**
      * Получает представление
      */
-    getViews() {
+    viewsGetter() {
         return this.#views;
     }
 

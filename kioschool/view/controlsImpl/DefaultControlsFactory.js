@@ -49,7 +49,7 @@ export class DefaultControlsFactory extends IControlsFactory {
      */
     createRegimePanel(width = 0, height = 0) {
         this.#regimePanel = new DefaultRegimePanel(width - BorderedBackground.BORDER_WIDTH*2 -
-            DefaultRegimePanel.BORDER_SPACE*2, DefaultRegimePanel.getFullHeight());
+            DefaultRegimePanel.BORDER_SPACE*2, DefaultRegimePanel.fullHeightGetter());
         return this.#regimePanel;
     }
 
@@ -89,7 +89,7 @@ export class DefaultControlsFactory extends IControlsFactory {
         stage.addChild(bg);
 
         let borderSpace = BorderedBackground.BORDER_WIDTH + DefaultRegimePanel.BORDER_SPACE;
-        let regimeSpace = borderSpace + DefaultRegimePanel.getFullHeight();
+        let regimeSpace = borderSpace + DefaultRegimePanel.fullHeightGetter();
 
         bg.addChild(this.#regimePanel);
         this.#regimePanel.x = borderSpace;

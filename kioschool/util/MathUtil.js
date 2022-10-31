@@ -36,10 +36,10 @@ export class MathUtil {
     }
 
     static space(p1, p2, p) {
-        let a = p1.getPy() - p2.getPy();
-        let b = p2.getPx() - p1.getPx();
-        let c = p1.getPx() * p2.getPy() - p2.getPx() * p1.getPy();
-        let dist = Math.abs(a * p.getPx() + b * p.getPy() + c) / (Math.sqrt(a*a + b*b));
+        let a = p1.pyGetter() - p2.pyGetter();
+        let b = p2.pxGetter() - p1.pxGetter();
+        let c = p1.pxGetter() * p2.pyGetter() - p2.pxGetter() * p1.pyGetter();
+        let dist = Math.abs(a * p.pxGetter() + b * p.pyGetter() + c) / (Math.sqrt(a*a + b*b));
         return dist;
     }
 
@@ -63,7 +63,7 @@ export class MathUtil {
         for (let i = 1; i < this.#n; i++) {
             let p1 = this.#p[i];
             let p2 = this.#p[min];
-            if (p1.getPy() > p2.getPy() || p1.getPy() === p2.getPy() && p1.getPx() < p2.getPx()) {
+            if (p1.pyGetter() > p2.pyGetter() || p1.pyGetter() === p2.pyGetter() && p1.pxGetter() < p2.pxGetter()) {
                 min = i;
             }
         }
@@ -94,10 +94,10 @@ export class MathUtil {
     }
 
     static #isMinimum(p1, p2, q) {
-        let b1 = p2.getPx() - q.getPx();
-        let b2 = p2.getPy() - q.getPy();
-        let a1 = p1.getPx() - q.getPx();
-        let a2 = p1.getPy() - q.getPy();
+        let b1 = p2.pxGetter() - q.pxGetter();
+        let b2 = p2.pyGetter() - q.pyGetter();
+        let a1 = p1.pxGetter() - q.pxGetter();
+        let a2 = p1.pyGetter() - q.pyGetter();
         return a1*b2 - a2*b1 < 0;
     }
 
@@ -269,10 +269,10 @@ export class MathUtil {
             let p2 = this.#p[polygon[j]];
             let p = this.#p[point];
 
-            if (p1.getPx() < p.getPx() && p2.getPx() >= p.getPx() || p2.getPx() < p.getPx() &&
-                p1.getPx() >= p.getPx()) {
-                if (p1.getPy() + (p.getPx() - p1.getPx()) / (p2.getPx() - p1.getPx()) *
-                    (p2.getPy() - p1.getPy()) < p.getPy()) {
+            if (p1.pxGetter() < p.pxGetter() && p2.pxGetter() >= p.pxGetter() || p2.pxGetter() < p.pxGetter() &&
+                p1.pxGetter() >= p.pxGetter()) {
+                if (p1.pyGetter() + (p.pxGetter() - p1.pxGetter()) / (p2.pxGetter() - p1.pxGetter()) *
+                    (p2.pyGetter() - p1.pyGetter()) < p.pyGetter()) {
                     isInside = !isInside;
                 }
             }

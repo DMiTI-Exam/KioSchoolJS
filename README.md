@@ -7,14 +7,14 @@ browser compatibility.
 
 ## Requirements
 
-*   You must end each statement with ; according to developers community.
-*   You always must use { } even if for, while or if constructions have 1 statement to execute.
-*   import { module } from "path/to/module.js" - spaces in { } and the module must ending with .js.
+*   You must end each statement with **;** according to developers community.
+*   You always must use **{ }** even if for, while or if constructions have 1 statement to execute.
+*   ***import { module } from "path/to/module.js"*** - spaces in { } and the module must ending with .js.
 *   The "export" keyword must be followed by all classes declarations for correct import using.
-*   In ActionScript code you can see that some class field names starts with _. Unlike JS, flash have access modifiers.
+*   In ActionScript code you can see that some class field names starts with **_**. Unlike JS, flash have access modifiers.
 Hence, in flash you can use the protected modifier with a field declaration, but JS haven't keywords for modifiers.
-Instead of it uses #, _ symbols before the field name. "#field" - private field, "_field" - protected field and simple 
-"field" - public field. Thus, don't migrate the variable name _var as _var to JS!
+Instead of it uses **#**, **_** symbols before the field name. ***#field*** - private field, ***_field*** - protected field and simple 
+***field*** - public field. Thus, don't migrate the variable name _var as _var to JS!
 *   When you declare fields with document comments or static constants or fields, leave them between empty lines:
     ```js
     static CONSTANT_1 = 5;
@@ -39,10 +39,10 @@ Instead of it uses #, _ symbols before the field name. "#field" - private field,
     #field4;
     #field5;
     ```
-*   flash.utils.Dictionary is changing to Map() class in JS. For setting and getting you have to use .get(...) and .set()
-methods in Map class. Don't work with Map as arrays.
-*   Array, Vector and, maybe, another such objects in flash is changing to simple [] in JS. Variable initialized with
-[] has .push(), .pop() and other similar methods.
+*   flash.utils.Dictionary is changing to Map() class in JS. For setting and getting you have to use ***.get(...)*** and ***.set()***
+methods in the ***Map*** class. Don't work with ***Map*** as arrays.
+*   ***Array***, ***Vector*** and, maybe, another such objects in flash is changing to simple ***[]*** in JS. Variable initialized with
+***[]*** has ***.push()***, ***.pop()*** and other similar methods.
 *   When you write class, please, keep the next order definition rules:
     *   First of all, declare static constant;
     *   Secondly, declare static fields;
@@ -59,24 +59,27 @@ methods in Map class. Don't work with Map as arrays.
     ```
     Must be changed to:
     ```js
-    getRegime() {
+    regimeGetter() {
         ...
     }
     
-    setRegime(newRegime) {
+    regimeSetter(newRegime) {
         ...
     }
     
-    let currentRegime = getRegime();
-    setRegime(5);
+    let currentRegime = regimeGetter();
+    regimeSetter(5);
     ```
-    Wherever when you face to usage simple variables such as regime = 5 and so on, you
+    **Importantly: migrate function get/set <name> as <name>Getter/Setter in order to distinguish them from another get/set<name>
+    methods!**
+    
+    Whenever you face to usage simple variables such as regime = 5 and so on, you
     must check on set or get functions because they can have complex logic rather than simple
     returning a class field.
-*   In JS all field or method calls must be started with "this.". When you want to use private/protected field, you
-have to use following syntax: this.#privateField or this._protectedField or this.publicField. As for methods, correspondingly
-this.#privateMethod(arg), this._protectedMethod(arg) and this.publicMethod(arg).
-*   When you check object on null, use == or != operators. In another cases use === or !== to check on types additionally.
+*   In JS all field or method calls must be started with ***this.*** . When you want to use private/protected field, you
+have to use following syntax: ***this.#privateField*** or ***this._protectedField*** or ***this.publicField***. As for methods, correspondingly
+***this.#privateMethod(arg)***, ***this._protectedMethod(arg)*** and ***this.publicMethod(arg)***.
+*   When you check object on ***null***, use ***==*** or ***!=*** operators. In another cases use ***===*** or ***!==*** to check on types additionally.
 
 ## Advices to tricky moments
 
@@ -88,7 +91,7 @@ this.#privateMethod(arg), this._protectedMethod(arg) and this.publicMethod(arg).
         }
     }
     ```
-    In JS constructor is constructor():
+    In JS constructor is ***constructor()***:
     ```js
     class SomeClass {
         constructor(arg) {
@@ -98,7 +101,7 @@ this.#privateMethod(arg), this._protectedMethod(arg) and this.publicMethod(arg).
     ```
     JS has not private constructors, to do it, see the next point.
 *   Usage of singleton GoF pattern: in flash you can see private class passed to the singleton
-class constructor. However, this way isn't valid. You can see an example in the CommentManager.js
+class constructor. However, this way isn't valid. You can see an example in the ***CommentManager.js***
 class. When you face to a singleton class, please, follow the next steps:
     *   Create private static fields, one for instance and another for specify whether this class be constructed directly:
         ```js
@@ -154,12 +157,12 @@ get rid of this problem:
 *   When you see in ActionScript code something like this: extends Sprite, extends MovieClip, etc. You need to
 examine more about entity before doing changes. You can read about differences between Sprite, MovieClip in 
 flash and createjs below in the next sections. This is the general advices:
-    *   Both the flash Shape and MovieClip objects extends DisplayObjectContainer => is better to extends exactly 
-    createjs.Container and call this.addChild() with Shape or something else in a constructor. But if you will need to 
-    call property on a source object, just call getChildAt(0) to get it (if you have more than one object in the container
+    *   Both the flash ***Shape*** and ***MovieClip*** objects extends ***DisplayObjectContainer*** => is better to extends exactly 
+    ***createjs.Container*** and call ***this.addChild()*** with ***Shape*** or something else in a constructor. But if you will need to 
+    call property on a source object, just call ***getChildAt(0)*** to get it (if you have more than one object in the container
     try to calculate the index).
-    *   If your flash class extends Sprite and besides, for example, implements one interface => you can think about
-    extending this interface (class in JS) from createjs.Container, but this is not always applicable, consult with
+    *   If your flash class extends ***Sprite*** and besides, for example, implements one interface => you can think about
+    extending this interface (class in JS) from ***createjs.Container***, but this is not always applicable, consult with
     the project architect. 
     
         Source flash code:
@@ -176,14 +179,14 @@ flash and createjs below in the next sections. This is the general advices:
         class View extends createjs.Container {
         }
         ```
-    *   If your flash class implements more than one interface besides extending just Sprite, this is the most complicated
+    *   If your flash class implements more than one interface besides extending just ***Sprite***, this is the most complicated
     case. For solving it, consult with Multiple Inheritance section.
-    *   If your flash class extends SimpleButton, you also need to extend createjs.Container, but wrap the button to 
-    createjs.HelpButton class (you can get the wrapped object with "target" property). It allows with little force add 
-    listeners to buttons. Don't use the enabled property with complex logic (if you insert it into the selectButton method
-    of the DefaultRegimeButtons class, it breaks buttons), but for single button it works without problems. 
-    Note, that to use the "mouseEnabled" and "visible" properties, you need to call them from 
-    DisplayObject (Sprite and so on):
+    *   If your flash class extends ***SimpleButton***, you also need to extend ***createjs.Container***, but wrap the button to 
+    ***createjs.HelpButton*** class (you can get the wrapped object with ***target*** property). It allows with little force add 
+    listeners to buttons. Don't use the enabled property with complex logic (if you insert it into the ***selectButton*** method
+    of the ***DefaultRegimeButtons*** class, it breaks buttons), but for single button it works without problems. 
+    Note, that to use the ***mouseEnabled*** and ***visible*** properties, you need to call them from 
+    ***DisplayObject*** (***Sprite*** and so on):
         ```js
         class SomeButton extends createjs.Container {
             someButtonHelper;
@@ -204,8 +207,8 @@ flash and createjs below in the next sections. This is the general advices:
             }
         }
         ```
-*   When you face to "is" keyword in flash, you need to use "instanceof" operator in JS. But be aware of that instanceof
-operator checks inheritance relation, and not only type. For example:
+*   When you face to ***is*** keyword in flash, you need to use the ***instanceof*** operator in JS. But be aware of that 
+***instanceof*** operator checks inheritance relation, and not only type. For example:
     ```js
     class A {
     }
@@ -218,15 +221,15 @@ operator checks inheritance relation, and not only type. For example:
     
     console.log(b instanceof a); // returns true
     ```
-    Be carefully with using this operator. Also there is a "typeof" operator, but typeof(A) returns object and this doing
+    Be carefully with using this operator. Also there is a ***typeof*** operator, but ***typeof(A)*** returns object and this doing
     it useless.
 *   JS doesn't support type casting between classes and in 99% cases it's not necessary. If you have an urgent need, 
 maybe you are doing something wrong, consult with the project architect.
-*   This project have additionalComponent package, which contains the self-written TextField component, and it is placed directly
-to document, it not supports createjs.Container and other createjs classes, hence you need to use it only edge cases:
-    *   If you see, that text created as TextField in flash doesn't change, use createjs.Text for this purpose.
-    *   If you need to dynamically change the text, use custom TextField from additionalComponent package.
-*   If you need to call the method from a context that hides "this" reference (such as EventListener), use the next hack:
+*   This project have ***additionalComponent*** package, which contains the self-written ***TextField*** component, and it is placed directly
+to document, it not supports ***createjs.Container*** and other ***createjs*** classes, hence you need to use it only edge cases:
+    *   If you see, that text created as ***TextField*** in flash doesn't change, use ***createjs.Text*** for this purpose.
+    *   If you need to dynamically change the text, use custom ***TextField*** from ***additionalComponent*** package.
+*   If you need to call the method from a context that hides ***this*** reference (such as ***EventListener***), use the next hack:
     ```js
     let self = this;
     
@@ -235,14 +238,14 @@ to document, it not supports createjs.Container and other createjs classes, henc
         self.updateButtons();
     });
     ```
-*   If you need to get width or height from createjs.Container or createjs.DisplayObject classes, they
-haven't these properties, but have getBounds() method which has width, height, x and y properties.
+*   If you need to get ***width*** or ***height*** from ***createjs.Container*** or ***createjs.DisplayObject*** classes, they
+haven't these properties, but have ***getBounds()*** method which has ***width***, ***height***, ***x*** and ***y*** properties.
 You need to call this:
     ```js
     let containerWidth = container.getBounds().width;
     ```
-    However, x and y you have to get directly from createjs.Container or createjs.DisplayObject classes.
-*   for (var i:int ...) replaces with for (let i = 0; ...) - if an int variable isn't declared 0 by default.
+    However, ***x*** and ***y*** you have to get directly from ***createjs.Container*** or ***createjs.DisplayObject*** classes.
+*   ***for (var i:int ...)*** replaces with ***for (let i = 0; ...)*** - an int variable is declared 0 by default.
 *   For cycle through collection in flash:
     ```actionscript3
     for each(var cell:ChessCell in _listOfCells) {
@@ -255,12 +258,12 @@ You need to call this:
         // ...
     }
     ```
-    In must be changed to of.
+    ***In*** must be changed to ***of***.
 
 ## Difference between base classes in Flash and createjs
 
-There is a large amount of objects in flash.display package. Some basic of them: Bitmap, DisplayObject, 
-DisplayObjectContainer, Graphics, MovieClip, Shape, SimpleButton, Sprite, Stage.
+There is a large amount of objects in ***flash.display*** package. Some basic of them: ***Bitmap***, ***DisplayObject***, 
+***DisplayObjectContainer***, ***Graphics***, ***MovieClip***, ***Shape***, ***SimpleButton***, ***Sprite***, ***Stage***.
 
 Some of these classes we can roughly associate with corresponding classes in createjs:
 
@@ -272,8 +275,8 @@ DisplayObjectContainer | Container |
 Graphics | Graphics |
 Stage | Stage |
 
-Hence we don't consider above classes. Also we don't consider SimpleButton (in a previous section we discuss how to
-replace a SimpleButton object to createjs).
+Hence we don't consider above classes. Also we don't consider ***SimpleButton*** (in a previous section we discuss how to
+replace a ***SimpleButton*** object to createjs).
 
 Classes | Flash description | Createjs description |
 :---:   | :---:             | :---:                |
@@ -282,18 +285,27 @@ Shape | is the simplest display object you can add on stage. It is the most limi
 SpriteSheet | - | Encapsulates the properties and methods associated with a sprite sheet. A sprite sheet is a series of images (usually animation frames) combined into a larger image (or images). For example, an animation consisting of eight 100x100 images could be combined into a single 400x200 sprite sheet (4 frames across by 2 high). |
 Sprite | extends DisplayObjectContainer and InteractiveObject, therefore it's interactive and you can add children to it. It's the most useful display class, as long as you don't need a timeline. | Displays a frame or sequence of frames (ie. an animation) from a SpriteSheet instance. |
 
-Comparing this classes, note that all are differ to some extent. Shape and SpriteSheet are inextricably linked and represents
-series of images and extends directly from DisplayObject, not Container. In flash Sprite is a basic display object with
+Comparing this classes, note that all are differ to some extent. ***Shape*** and ***SpriteSheet*** are inextricably linked and represents
+series of images and extends directly from ***DisplayObject***, not ***Container***. In flash ***Sprite*** is a basic display object with
 another purpose. 
 
-Shapes are also different, in flash is the most restricted class, but in createjs is the basic
-display object as Sprite in flash.
+***Shapes*** are also different, in flash is the most restricted class, but in createjs is the basic
+display object as ***Sprite*** in flash.
 
-All the Shape and Sprite can be interactive (mouse usage, events, etc) in createjs, but in the flash only Sprite.
+All the ***Shape*** and ***Sprite*** can be interactive (mouse usage, events, etc) in createjs, but in the flash only ***Sprite***.
 
-MovieClip extends Sprite in flash, but in createjs it encapsulates the Tween object, therefore you cannot use Graphics 
+***MovieClip*** extends ***Sprite*** in flash, but in createjs it encapsulates the ***Tween*** object, therefore you cannot use ***Graphics*** 
 on it, constructor takes labels with animation names containing numeric values - frames to jump to when calling one or 
 another animation.
 
-## Multiple inheritance in JS
-
+## Done modules
+- [ ] Assignment
+- [ ] Dijkstra
+- [ ] Euler
+- [ ] Horse
+- [ ] Huffman
+- [X] Kioschool (core)
+- [ ] Kruskal
+- [ ] Lpca
+- [ ] Matching
+- [ ] Prim

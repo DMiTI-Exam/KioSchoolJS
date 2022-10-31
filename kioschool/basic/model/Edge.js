@@ -32,35 +32,35 @@ export class Edge {
     /**
      * Получает идентификатор
      */
-    getId() {
+    idGetter() {
         return this.#id;
     }
 
     /**
      * Получает источник - первая инцидентная вершина
      */
-    getSource() {
+    sourceGetter() {
         return this.#source;
     }
 
     /**
      * Устанавливает источник - первая инцидентная вершина
      */
-    setSource(value) {
+    sourceSetter(value) {
         this.#source = value;
     }
 
     /**
      * Получает приемник - вторая инцидентная вершина
      */
-    getTarget() {
+    targetGetter() {
         return this.#target;
     }
 
     /**
      * Устанавливает приемник - вторая инцидентная вершина
      */
-    setTarget(value) {
+    targetSetter(value) {
         this.#target = value;
     }
 
@@ -74,7 +74,7 @@ export class Edge {
     /**
      * Устанавливает представления
      */
-    setView(value) {
+    viewSetter(value) {
         this.#view = value;
     }
 }

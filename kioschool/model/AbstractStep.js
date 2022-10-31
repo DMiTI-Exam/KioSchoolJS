@@ -13,18 +13,18 @@ export class AbstractStep {
      */
     #correct = true;
 
-    getCorrect() {
+    correctGetter() {
         return this.#correct;
     }
 
-    setCorrect(cor) {
+    correctSetter(cor) {
         this.#correct = cor;
     }
 
     /**
      * Возвращает код
      */
-    getCode() {
+    codeGetter() {
         throw new Error("");
     }
 

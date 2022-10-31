@@ -14,14 +14,14 @@ export class ICommentPanel extends IDisplayableComponent {
     /**
      * Получает потребителя текста комментария
      */
-    getComment() {
+    commentGetter() {
         throw new Error("Abstract method: must be overridden in a subclass");
     }
 
     /**
      * Получает потребителя текста ошибки
      */
-    getError() {
+    errorGetter() {
         throw new Error("Abstract method: must be overridden in a subclass");
     }
 }

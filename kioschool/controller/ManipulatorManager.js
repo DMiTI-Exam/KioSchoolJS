@@ -92,7 +92,7 @@ export class ManipulatorManager {
     /**
      * Получает экземпляр
      */
-    static getInstance() {
+    static instanceGetter() {
         if (ManipulatorManager.#instance == null) {
             ManipulatorManager.#canConstruct = true;
             ManipulatorManager.#instance = new ManipulatorManager();
@@ -111,15 +111,15 @@ export class ManipulatorManager {
         }
     }
 
-    getStepArray() {
+    stepArrayGetter() {
         return this.#stepArray;
     }
 
-    getSecondaryController() {
+    secondaryControllerGetter() {
         return this.#secondaryController;
     }
 
-    getScene() {
+    sceneGetter() {
         return this.#scene;
     }
 
@@ -144,10 +144,10 @@ export class ManipulatorManager {
 
         this.initController();
 
-        this.setRegime(ManipulatorManager.REGIME_DEMO);
+        this.regimeSetter(ManipulatorManager.REGIME_DEMO);
     }
 
-    getPerspective() {
+    perspectiveGetter() {
         return this.#perspective;
     }
 
@@ -155,7 +155,7 @@ export class ManipulatorManager {
      * Генерация условия задачи
      */
     initController() {
-        if (this.getRegime() === ManipulatorManager.REGIME_CONTROL) {
+        if (this.regimeGetter() === ManipulatorManager.REGIME_CONTROL) {
             this.#perspective.hideHelp();
         } else {
             this.#perspective.showHelp();
@@ -164,9 +164,9 @@ export class ManipulatorManager {
         this.#errorCollector.clean();
         this.#secondaryController.init();
         this.#stepArray = [];
-        this.#stepArray.push(this.#secondaryController.getFirstStep());
+        this.#stepArray.push(this.#secondaryController.firstStepGetter());
         this.updateStep();
-        this.getCurrentStep().update();
+        this.currentStepGetter().update();
         this.#sendResult = false;
         this.#navigationPanel.enableSubmit(true);
     }
@@ -178,7 +178,7 @@ export class ManipulatorManager {
     /**
      * Получает текущий шаг
      */
-    getCurrentStep() {
+    currentStepGetter() {
         if (this.#stepArray.length === 0) {
             return null;
         }
@@ -186,7 +186,7 @@ export class ManipulatorManager {
         return this.#stepArray[this.#stepArray.length-1];
     }
 
-    getPreviousStep() {
+    previousStepGetter() {
         if (this.#stepArray.length < 2) {
             return null;
         }
@@ -197,30 +197,30 @@ export class ManipulatorManager {
     /**
      * Возвращает текущий режим
      */
-    getRegime() {
+    regimeGetter() {
         return this.#currentRegime;
     }
 
     /**
      * Устанавливает текущий режим
      */
-    setRegime(newRegime) {
-        if (newRegime === this.getRegime()) {
+    regimeSetter(newRegime) {
+        if (newRegime === this.regimeGetter()) {
             return;
         }
 
         let last = this.#currentRegime;
         this.#currentRegime = newRegime;
-        this.#regimePanel.regimeChanged(this.getRegime());
-        this.#navigationPanel.regimeChanged(this.getRegime());
+        this.#regimePanel.regimeChanged(this.regimeGetter());
+        this.#navigationPanel.regimeChanged(this.regimeGetter());
         if (newRegime === ManipulatorManager.REGIME_CONTROL || last === ManipulatorManager.REGIME_CONTROL) {
             this.initController(); //Инициализация нового условия (перезапуск контроллера)
-            this.getCurrentStep().update();
+            this.currentStepGetter().update();
         } else {
-            this.getCurrentStep().restore();
+            this.currentStepGetter().restore();
         }
 
-        this.#secondaryController.regimeChanged(this.getRegime());
+        this.#secondaryController.regimeChanged(this.regimeGetter());
         this.updateStep();
         if (newRegime !== ManipulatorManager.REGIME_DEMO) {
             this.#enableAnyAction(this.#workspace, true);
@@ -228,7 +228,7 @@ export class ManipulatorManager {
     }
 
     updateStep() {
-        let view = this.getCurrentStep().getView();
+        let view = this.currentStepGetter().getView();
 
         this.#clearWorkspace();
         view.draw(this.#workspace);
@@ -239,11 +239,11 @@ export class ManipulatorManager {
         this.#workspace.getBounds().height = this.#workspace.getChildAt(0).getBounds().height +
             this.#workspace.getChildAt(0).y;
 
-        this.#navigationPanel.stepChanged(this.#stepArray.length <= 1, this.getCurrentStep());
+        this.#navigationPanel.stepChanged(this.#stepArray.length <= 1, this.currentStepGetter());
 
-        this.getCurrentStep().setComment(this.#commentPanel.getComment());
+        this.currentStepGetter().setComment(this.#commentPanel.commentGetter());
 
-        if (this.getRegime() === ManipulatorManager.REGIME_DEMO) {
+        if (this.regimeGetter() === ManipulatorManager.REGIME_DEMO) {
             this.#enableAnyAction(this.#workspace, false);
         }
     }
@@ -279,25 +279,25 @@ export class ManipulatorManager {
      * Переход между режимами
      */
     nextClick() {
-        if (this.getRegime() === ManipulatorManager.REGIME_DEMO) {
-            this.getCurrentStep().oracle(); // Решаем шаг
-        } else if (this.getRegime() === ManipulatorManager.REGIME_TRAINING) {
-            if (this.getCurrentStep().checkInput(this.#commentPanel.getError()) != null) {
+        if (this.regimeGetter() === ManipulatorManager.REGIME_DEMO) {
+            this.currentStepGetter().oracle(); // Решаем шаг
+        } else if (this.regimeGetter() === ManipulatorManager.REGIME_TRAINING) {
+            if (this.currentStepGetter().checkInput(this.#commentPanel.errorGetter()) != null) {
                 return;
             }
-        } else if (this.getRegime() === ManipulatorManager.REGIME_CONTROL) {
-            let res = this.getCurrentStep().checkInput(this.#errorCollector);
+        } else if (this.regimeGetter() === ManipulatorManager.REGIME_CONTROL) {
+            let res = this.currentStepGetter().checkInput(this.#errorCollector);
             if (res != null) {
-                this.getCurrentStep().setCorrect(false);
+                this.currentStepGetter().correctSetter(false);
             }
         }
 
-        this.#stepArray.push(this.getCurrentStep().next());
-        this.getCurrentStep().update();
+        this.#stepArray.push(this.currentStepGetter().next());
+        this.currentStepGetter().update();
         this.updateStep();
-        if (!this.#anim && (this.getRegime() === ManipulatorManager.REGIME_DEMO ||
-            this.getRegime() === ManipulatorManager.REGIME_TRAINING)) {
-            if (this.getCurrentStep().next() == null) {
+        if (!this.#anim && (this.regimeGetter() === ManipulatorManager.REGIME_DEMO ||
+            this.regimeGetter() === ManipulatorManager.REGIME_TRAINING)) {
+            if (this.currentStepGetter().next() == null) {
                 this.submitSolution(true);
             }
         }
@@ -307,12 +307,12 @@ export class ManipulatorManager {
      * Событие кнопки Назад
      */
     backClick() {
-        this.getCurrentStep().restore();
+        this.currentStepGetter().restore();
         this.#stepArray.pop();
-        this.getCurrentStep().antiOracle();
-        this.getCurrentStep().update();
-        if (!this.getCurrentStep().getCorrect()) {
-            this.getCurrentStep().setCorrect(true);
+        this.currentStepGetter().antiOracle();
+        this.currentStepGetter().update();
+        if (!this.currentStepGetter().correctGetter()) {
+            this.currentStepGetter().correctSetter(true);
             this.#errorCollector.pop();
         }
 
@@ -329,12 +329,12 @@ export class ManipulatorManager {
         this.#demoReg = dem;
     }
 
-    getStackSize() {
+    stackSizeGetter() {
         return this.#stepArray.length;
     }
 
-    getAmountOfErrors() {
-        return this.#errorCollector.getLength();
+    amountOfErrorsGetter() {
+        return this.#errorCollector.lengthGetter();
     }
 
     runAnimation(delay) {
@@ -355,18 +355,18 @@ export class ManipulatorManager {
     }
 
     #forwardAction() {
-        if (this.getCurrentStep().next() != null) {
+        if (this.currentStepGetter().next() != null) {
             this.nextClick();
         } else {
             this.submitSolution();
             this.unlock();
-            this.setRegime(ManipulatorManager.REGIME_CONTROL);
+            this.regimeSetter(ManipulatorManager.REGIME_CONTROL);
             this.#anim = false;
         }
     }
 
     unlock() {
-        if (this.getRegime() !== ManipulatorManager.REGIME_DEMO) {
+        if (this.regimeGetter() !== ManipulatorManager.REGIME_DEMO) {
             this.#enableAnyAction(this.#workspace, true);
         }
 

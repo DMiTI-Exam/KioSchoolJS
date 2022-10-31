@@ -22,7 +22,7 @@ export class DefaultHelpNavigationPanel extends createjs.Container {
         this.#buttons.x = (width - this.#buttons.getBounds().width) / 2;
         this.#buttons.y = (height - this.#buttons.getBounds().height) / 2;
 
-        sprite.addChild(HelpManager.getInstance().getPage());
+        sprite.addChild(HelpManager.instanceGetter().getPage());
 
         this.updateButtons();
 
@@ -30,31 +30,31 @@ export class DefaultHelpNavigationPanel extends createjs.Container {
 
         this.#buttons.next_btn.addEventListener("click", function (event) {
             sprite.removeChildAt(0);
-            sprite.addChild(HelpManager.getInstance().nextPage());
+            sprite.addChild(HelpManager.instanceGetter().nextPage());
             self.updateButtons();
         });
 
         this.#buttons.prev_btn.addEventListener("click", function (event) {
             sprite.removeChildAt(0);
-            sprite.addChild(HelpManager.getInstance().previousPage());
+            sprite.addChild(HelpManager.instanceGetter().previousPage());
             self.updateButtons();
         });
     }
 
     updateButtons() {
-        this.#buttons.help_txt.text = (HelpManager.getInstance().getPageNumber() + 1) + "/" +
-            HelpManager.getInstance().getPageAmount();
+        this.#buttons.help_txt.text = (HelpManager.instanceGetter().pageNumberGetter() + 1) + "/" +
+            HelpManager.instanceGetter().pageAmountGetter();
 
-        this.#buttons.prevButtonHelper.enabled = HelpManager.getInstance().hasPrevious();
-        this.#buttons.prev_btn.mouseEnabled = HelpManager.getInstance().hasPrevious();
+        this.#buttons.prevButtonHelper.enabled = HelpManager.instanceGetter().hasPrevious();
+        this.#buttons.prev_btn.mouseEnabled = HelpManager.instanceGetter().hasPrevious();
         if (this.#buttons.prevButtonHelper.enabled) {
             this.#buttons.prev_btn.alpha = 1;
         } else {
             this.#buttons.prev_btn.alpha = 0.5;
         }
 
-        this.#buttons.nextButtonHelper.enabled = HelpManager.getInstance().hasNext();
-        this.#buttons.next_btn.mouseEnabled = HelpManager.getInstance().hasNext();
+        this.#buttons.nextButtonHelper.enabled = HelpManager.instanceGetter().hasNext();
+        this.#buttons.next_btn.mouseEnabled = HelpManager.instanceGetter().hasNext();
         if (this.#buttons.nextButtonHelper.enabled) {
             this.#buttons.next_btn.alpha = 1;
         } else {

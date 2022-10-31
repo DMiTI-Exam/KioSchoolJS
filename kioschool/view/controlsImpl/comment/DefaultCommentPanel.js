@@ -59,7 +59,7 @@ export class DefaultCommentPanel extends ICommentPanel {
         this.#ercommentmc.y = cloudY;
     }
 
-    getComment() {
+    commentGetter() {
         this.#commentmc.visible = true;
         this.#ercommentmc.visible = false;
 
@@ -71,7 +71,7 @@ export class DefaultCommentPanel extends ICommentPanel {
         return new CommentTextConsumer(this.#view);
     }
 
-    getError() {
+    errorGetter() {
         this.#commentmc.visible = false;
         this.#ercommentmc.visible = true;
 

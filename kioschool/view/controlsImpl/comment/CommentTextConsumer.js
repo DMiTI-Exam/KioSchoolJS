@@ -10,7 +10,7 @@ export class CommentTextConsumer extends ITextConsumer {
         this.#textField = view;
     }
 
-    setText(comment) {
+    textSetter(comment) {
         this.#textField.text = comment;
     }
 }

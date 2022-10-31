@@ -7,11 +7,11 @@ export class SimpleTextConsumer extends ITextConsumer {
         super();
     }
 
-    setText(text) {
+    textSetter(text) {
         this.#text = text;
     }
 
-    getText() {
+    textGetter() {
         return this.#text;
     }
 }

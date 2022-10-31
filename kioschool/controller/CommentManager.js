@@ -30,7 +30,7 @@ export class CommentManager {
     /**
      * Получает экземпляр
      */
-    static getInstance() {
+    static instanceGetter() {
         if (CommentManager.#instance == null) {
             CommentManager.#canConstruct = true;
             CommentManager.#instance = new CommentManager();
@@ -159,11 +159,11 @@ export class CommentManager {
     }
 
     getStepHelp(key, consumer, alternativeValue = null) {
-        if (ManipulatorManager.getInstance().getRegime() === ManipulatorManager.REGIME_DEMO) {
+        if (ManipulatorManager.instanceGetter().regimeGetter() === ManipulatorManager.REGIME_DEMO) {
             key = key + "_demonstration";
-        } else if (ManipulatorManager.getInstance().getRegime() === ManipulatorManager.REGIME_TRAINING) {
+        } else if (ManipulatorManager.instanceGetter().regimeGetter() === ManipulatorManager.REGIME_TRAINING) {
             key = key + "_training";
-        } else if (ManipulatorManager.getInstance().getRegime() === ManipulatorManager.REGIME_CONTROL) {
+        } else if (ManipulatorManager.instanceGetter().regimeGetter() === ManipulatorManager.REGIME_CONTROL) {
             key = key + "_control";
         } else {
             key = key + "_demonstration";
@@ -183,11 +183,11 @@ export class CommentManager {
         }
 
         if (this.#comments.get(key) != null) {
-            consumer.setText(prefix + this.#comments.get(key));
+            consumer.textSetter(prefix + this.#comments.get(key));
             return;
         }
 
         this.#comments.set(key, alternativeValue);
-        consumer.setText(alternativeValue);
+        consumer.textSetter(alternativeValue);
     }
 }

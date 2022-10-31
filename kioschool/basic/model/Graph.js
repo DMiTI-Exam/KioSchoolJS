@@ -23,35 +23,35 @@ export class Graph {
     /**
      * Получает список вершин
      */
-    getVertexes() {
+    vertexesGetter() {
         return this.#vertexes;
     }
 
     /**
      * Получает список ребер
      */
-    getEdges() {
+    edgesGetter() {
         return this.#edges;
     }
 
     /**
      * Устанавливает список ребер
      */
-    setEdges(ar) {
-        this.#edges = ar;
+    edgesSetter(arr) {
+        this.#edges = arr;
     }
 
     /**
      * Получает представление
      */
-    getView() {
+    viewGetter() {
         return this.#view;
     }
 
     /**
      * Устанавливает представление
      */
-    setView(value) {
+    viewSetter(value) {
         this.#view = value;
     }
 
@@ -61,11 +61,11 @@ export class Graph {
     getEdge(v1, v2) {
         for (let i = 0; i < this.#edges.length; i++) {
             let edge = this.#edges[i];
-            if (edge.getSource().getId()== v1.getId() && edge.getTarget().getId() == v2.getId()) {
+            if (edge.sourceGetter().idGetter()== v1.idGetter() && edge.targetGetter().idGetter() == v2.idGetter()) {
                 return edge;
             }
 
-            if (edge.getSource().getId() == v2.getId() && edge.getTarget().getId() == v1.getId()) {
+            if (edge.sourceGetter().idGetter() == v2.idGetter() && edge.targetGetter().idGetter() == v1.idGetter()) {
                 return edge;
             }
 
@@ -80,7 +80,7 @@ export class Graph {
         let sum = 0;
         for (let i = 0; i < this.#edges.length; i++) {
             let edge = this.#edges[i];
-            if (edge.getSource().getId() == v1.getId() || edge.getTarget().getId() == v1.getId()) {
+            if (edge.sourceGetter().idGetter() == v1.idGetter() || edge.targetGetter().idGetter() == v1.idGetter()) {
                 sum++;
             }
         }
@@ -93,20 +93,20 @@ export class Graph {
      */
     isPath(v1, v2) {
         for (let vertex of this.#vertexes) {
-            vertex.setLabeled(false);
+            vertex.labeledSetter(false);
         }
 
         this.#label(v1);
-        return v2.isLabeled();
+        return v2.labeledGetter();
     }
 
     #label(vertex) {
-        vertex.setLabeled(true);
+        vertex.labeledSetter(true);
         for (let edge of this.#edges) {
-            if (edge.getSource() === vertex && !edge.getTarget().isLabeled()) {
-                this.#label(edge.getTarget());
-            } else if (edge.getTarget() === vertex && !edge.getSource().isLabeled()) {
-                this.#label(edge.getSource());
+            if (edge.sourceGetter() === vertex && !edge.targetGetter().labeledGetter()) {
+                this.#label(edge.targetGetter());
+            } else if (edge.targetGetter() === vertex && !edge.sourceGetter().labeledGetter()) {
+                this.#label(edge.sourceGetter());
             }
         }
     }
@@ -121,7 +121,7 @@ export class Graph {
         }
     }
 
-    setVertexes(value) {
+    vertexesSetter(value) {
         this.#vertexes = value;
     }
 }

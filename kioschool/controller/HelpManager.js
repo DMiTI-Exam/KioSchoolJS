@@ -28,7 +28,7 @@ export class HelpManager {
     /**
      * Возвращает сингельтон
      */
-    static getInstance() {
+    static instanceGetter() {
         if (HelpManager.#instance == null) {
             HelpManager.#canConstruct = true;
             HelpManager.#instance = new HelpManager();
@@ -47,11 +47,11 @@ export class HelpManager {
         }
     }
 
-    getPageNumber() {
+    pageNumberGetter() {
         return this.#currentPageNumber;
     }
 
-    getPageAmount() {
+    pageAmountGetter() {
         return this.#pages.length;
     }
 

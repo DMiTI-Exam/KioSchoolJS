@@ -10,11 +10,11 @@ export class ErrorCollector extends ITextConsumer {
         super();
     }
 
-    getLength() {
+    lengthGetter() {
         return this.#errorsHistory.length;
     }
 
-    setText(text) {
+    textSetter(text) {
         this.#errorsHistory.push(text);
         console.log("Errors history length: " + this.#errorsHistory.length);
     }

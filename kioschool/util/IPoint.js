@@ -5,11 +5,11 @@ export class IPoint {
         }
     }
 
-    getPx() {
+    pxGetter() {
         throw new Error("Abstract method: must be overridden in a subclass");
     }
 
-    getPy() {
+    pyGetter() {
         throw new Error("Abstract method: must be overridden in a subclass");
     }
 }

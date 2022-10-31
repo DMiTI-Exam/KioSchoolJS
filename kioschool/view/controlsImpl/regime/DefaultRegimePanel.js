@@ -27,7 +27,7 @@ export class DefaultRegimePanel extends IRegimePanel {
 
     #helpCaption = new createjs.Text("", "bold 14px Verdana", "#6F6F6F");
 
-    static getFullHeight() {
+    static fullHeightGetter() {
         return this.DARK_GREEN_LINE_WIDTH + this.LIGHT_GREEN_LINE_WIDTH +
             this.GRAY_LINE_WIDTH;
     }
@@ -68,15 +68,15 @@ export class DefaultRegimePanel extends IRegimePanel {
         this.#helpCaption.y = 7;
 
         this.#buttons.demoBtn.addEventListener("mousedown", function (event) {
-            ManipulatorManager.getInstance().setRegime(ManipulatorManager.REGIME_DEMO);
+            ManipulatorManager.instanceGetter().regimeSetter(ManipulatorManager.REGIME_DEMO);
         });
 
         this.#buttons.trainBtn.addEventListener("mousedown", function (event) {
-            ManipulatorManager.getInstance().setRegime(ManipulatorManager.REGIME_TRAINING);
+            ManipulatorManager.instanceGetter().regimeSetter(ManipulatorManager.REGIME_TRAINING);
         });
 
         this.#buttons.controlBtn.addEventListener("mousedown", function (event) {
-            ManipulatorManager.getInstance().setRegime(ManipulatorManager.REGIME_CONTROL);
+            ManipulatorManager.instanceGetter().regimeSetter(ManipulatorManager.REGIME_CONTROL);
         });
 
         if (ManipulatorManager.demo) {

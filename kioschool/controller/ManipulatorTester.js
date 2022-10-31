@@ -23,7 +23,7 @@ export class ManipulatorTester {
     /**
      * Получает экземпляр
      */
-    static getInstance() {
+    static instanceGetter() {
         if (ManipulatorTester.#instance == null) {
             ManipulatorTester.#canConstruct = true;
             ManipulatorTester.#instance = new ManipulatorTester();
@@ -52,10 +52,10 @@ export class ManipulatorTester {
     }
 
     #forwardAction() {
-        if (ManipulatorManager.getInstance().getCurrentStep().next() != null) {
-            ManipulatorManager.getInstance().nextClick();
+        if (ManipulatorManager.instanceGetter().currentStepGetter().next() != null) {
+            ManipulatorManager.instanceGetter().nextClick();
         } else {
-            ManipulatorManager.getInstance().initController();
+            ManipulatorManager.instanceGetter().initController();
             this.#attemptCount++;
             console.log(this.#attemptCount + " has finished");
         }
@@ -72,10 +72,10 @@ export class ManipulatorTester {
     }
 
     #forwardBackwardAction() {
-        if (this.#forward && ManipulatorManager.getInstance().getCurrentStep().next() != null) {
-            ManipulatorManager.getInstance().nextClick();
-        } else if (!this.#forward && !ManipulatorManager.getInstance().isStackOfStepEmpty()) {
-            ManipulatorManager.getInstance().backClick();
+        if (this.#forward && ManipulatorManager.instanceGetter().currentStepGetter().next() != null) {
+            ManipulatorManager.instanceGetter().nextClick();
+        } else if (!this.#forward && !ManipulatorManager.instanceGetter().isStackOfStepEmpty()) {
+            ManipulatorManager.instanceGetter().backClick();
         } else {
             if (this.#forward) {
                 this.#forward = false;

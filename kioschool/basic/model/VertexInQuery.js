@@ -9,19 +9,19 @@ export class VertexInQuery {
     constructor() {
     }
 
-    getVertex() {
+    vertexGetter() {
         return this.#vertex;
     }
 
-    setVertex(value) {
+    vertexSetter(value) {
         this.#vertex = value;
     }
 
-    getNumber() {
+    numberGetter() {
         return this.#number;
     }
 
-    setNumber(value) {
+    numberSetter(value) {
         this.#number = value;
     }
 }

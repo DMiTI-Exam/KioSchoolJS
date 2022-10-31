@@ -8,7 +8,7 @@ export class ITextConsumer {
     /**
      * Устанавливает сообщение
      */
-    setText(text) {
+    textSetter(text) {
         throw new Error("Abstract method: must be overridden in a subclass");
     }
 }

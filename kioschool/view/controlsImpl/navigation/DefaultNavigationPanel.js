@@ -32,19 +32,19 @@ export class DefaultNavigationPanel extends INavigationPanel {
         this.#checkButtons.x = (width - this.#checkButtons.getBounds().width - this.#checkButtons.y);
 
         this.#buttons.next_btn.addEventListener("click", function (event) {
-            ManipulatorManager.getInstance().nextClick();
+            ManipulatorManager.instanceGetter().nextClick();
         });
 
         this.#buttons.prev_btn.addEventListener("click", function (event) {
-            ManipulatorManager.getInstance().backClick();
+            ManipulatorManager.instanceGetter().backClick();
         });
 
         this.#checkButtons.reset_btn.addEventListener("click", function (event) {
-            ManipulatorManager.getInstance().initController();
+            ManipulatorManager.instanceGetter().initController();
         });
 
         this.#checkButtons.send_btn.addEventListener("click", function (event) {
-            ManipulatorManager.getInstance().submitSolution();
+            ManipulatorManager.instanceGetter().submitSolution();
         });
     }
 

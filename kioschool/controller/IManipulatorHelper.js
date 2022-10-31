@@ -26,7 +26,7 @@ export class IManipulatorHelper {
     /**
      * Получает первый шаг
      */
-    getFirstStep() {
+    firstStepGetter() {
         throw new Error("Abstract method: must be overridden in a subclass");
     }
 
@@ -40,11 +40,11 @@ export class IManipulatorHelper {
         throw new Error("Abstract method: must be overridden in a subclass");
     }
 
-    getId() {
+    idGetter() {
         throw new Error("Abstract method: must be overridden in a subclass");
     }
 
-    getRedrawInFinal() {
+    redrawInFinalGetter() {
         throw new Error("Abstract method: must be overridden in a subclass");
     }
 

@@ -10,13 +10,13 @@ export class QueryOfVertex {
         for (let i = 0; i < arr.length; i++) {
             let vertex = arr[i];
             let vertexInQuery = new VertexInQuery();
-            vertexInQuery.setVertex(vertex);
-            vertexInQuery.setNumber(-1);
+            vertexInQuery.vertexSetter(vertex);
+            vertexInQuery.numberSetter(-1);
             this.#array.push(vertexInQuery);
         }
     }
 
-    getArray() {
+    arrayGetter() {
         return this.#array;
     }
 
@@ -26,9 +26,9 @@ export class QueryOfVertex {
         let vv = null;
         for (let i = 0; i < this.#array.length; i++) {
             let vertex = this.#array[i];
-            if (vertex.getNumber() > num) {
-                num = vertex.getNumber();
-                v = vertex.getVertex();
+            if (vertex.numberGetter() > num) {
+                num = vertex.numberGetter();
+                v = vertex.vertexGetter();
                 vv = vertex;
             }
         }
@@ -42,15 +42,15 @@ export class QueryOfVertex {
         let vv = null;
         for (let i = 0; i < this.#array.length; i++) {
             let vertex = this.#array[i];
-            if (vertex.getNumber() > num) {
-                num = vertex.getNumber();
-                v = vertex.getVertex();
+            if (vertex.numberGetter() > num) {
+                num = vertex.numberGetter();
+                v = vertex.vertexGetter();
                 vv = vertex;
             }
         }
 
         if (vv != null) {
-            vv.setNumber(-1);
+            vv.numberSetter(-1);
         }
 
         return v;
