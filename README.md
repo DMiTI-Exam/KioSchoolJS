@@ -225,10 +225,10 @@ flash and createjs below in the next sections. This is the general advices:
     it useless.
 *   JS doesn't support type casting between classes and in 99% cases it's not necessary. If you have an urgent need, 
 maybe you are doing something wrong, consult with the project architect.
-*   This project have ***additionalComponent*** package, which contains the self-written ***TextField*** component, and it is placed directly
-to document, it not supports ***createjs.Container*** and other ***createjs*** classes, hence you need to use it only edge cases:
-    *   If you see, that text created as ***TextField*** in flash doesn't change, use ***createjs.Text*** for this purpose.
-    *   If you need to dynamically change the text, use custom ***TextField*** from ***additionalComponent*** package.
+*   This project have ***additionalComponent*** package, which contains the self-written ***TextField*** component, and it is placed to the
+document after placing corresponding createjs element, however you need to use it only in the one of the next cases:
+    *   If you see, that a text created as ***TextField*** in flash doesn't change, use ***createjs.Text*** for this purpose.
+    *   If you need to dynamically change the text, use the custom ***TextField*** from the ***additionalComponent*** package.
 *   If you need to call the method from a context that hides ***this*** reference (such as ***EventListener***), use the next hack:
     ```js
     let self = this;

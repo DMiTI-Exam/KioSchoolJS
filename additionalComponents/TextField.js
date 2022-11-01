@@ -11,24 +11,29 @@ export class TextField {
     #x;
     #y;
 
-    #canvas;
+    #createJsElement;
     #input = null;
     #textFormat;
 
-    constructor(canvas) {
-        this.#canvas = canvas;
+    constructor(createJsElement) {
+        this.#createJsElement = createJsElement;
 
         this.#input = document.createElement('textarea');
-        // this.#input.type = 'text';
-
-        this.#input.style.display = 'block';
         this.#input.style.position = 'absolute';
-        this.#input.style.left = canvas.offsetLeft + 'px';
-        this.#input.style.top = canvas.offsetTop + 'px';
+        this.#input.style.left = 0 + 'px';
+        this.#input.style.top = 0 + 'px';
         this.#input.style.outline = 'none';
         this.#input.style.resize = 'none';
 
-        document.body.appendChild(this.#input);
+        let div = document.createElement('div');
+        div.style.position = 'absolute';
+        div.appendChild(this.#input);
+
+        createJsElement.on("added", function (event) {
+            div.style.left = createJsElement.x + 'px';
+            div.style.top = createJsElement.y + 'px';
+            document.body.appendChild(div);
+        });
     }
 
     getBackgroundColor() {
@@ -60,10 +65,6 @@ export class TextField {
     setBorderColor(bgColor) {
         this.#borderColor = bgColor;
         this.#input.style.borderColor = bgColor;
-    }
-
-    getHeight() {
-        return this.#height;
     }
 
     getHeight() {
@@ -134,7 +135,7 @@ export class TextField {
 
     setX(x) {
         this.#x = x;
-        this.#input.style.left = (x + this.#canvas.offsetLeft) + 'px';
+        this.#input.style.left = (x + this.#createJsElement.x) + 'px';
     }
 
     getY() {
@@ -143,7 +144,7 @@ export class TextField {
 
     setY(y) {
         this.#y = y;
-        this.#input.style.top = (y + this.#canvas.offsetTop) + 'px';
+        this.#input.style.top = (y + this.#createJsElement.y) + 'px';
     }
 
     getTextFormat() {
@@ -171,26 +172,15 @@ export class TextField {
             this.#input.style.fontStyle = 'normal';
         }
 
-        // TODO: input haven't leading
-        //this.#input.style.
-
-        // TODO: left and right margins?
-        //this.#input.style.
-        //this.#input.style.
+        this.#input.style.lineHeight = textFormat.getLeading() + 'px';
 
         this.#input.style.fontSize = textFormat.getSize() + 'px';
-
-        // TODO: is target usable for us?
-        //this.#input.style.
 
         if (textFormat.isUnderline()) {
             this.#input.style.textDecoration = 'underline';
         } else {
             this.#input.style.textDecoration = 'none';
         }
-
-        // TODO: is url usable for us?
-        //this.#input.style.
     }
 
     getLineWidth() {

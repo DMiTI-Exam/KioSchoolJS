@@ -9,16 +9,11 @@ export class TextFormat {
     #indent = 0;
     #italic = false;
     #leading = 0;
-    #leftMargin = 0;
-    #rightMargin = 0;
     #size = 12;
-    #target = "";
     #underline = false;
-    #url = "";
 
     constructor(font = null, size = null, color = null, bold = null, italic = null,
-                underline = null, url = null, target = null, align = null,
-                leftMargin = null, rightMargin = null, indent = null, leading = null) {
+                underline = null, align = null, indent = null, leading = null) {
         if (align != null) {
             this.#align = align;
         }
@@ -45,30 +40,16 @@ export class TextFormat {
 
         if (leading != null) {
             this.#leading = leading;
-        }
-
-        if (leftMargin != null) {
-            this.#leftMargin = leftMargin;
-        }
-
-        if (rightMargin != null) {
-            this.#rightMargin = rightMargin;
+        } else {
+            this.#leading = -1;
         }
 
         if (size != null) {
             this.#size = size;
         }
 
-        if (target != null) {
-            this.#target = target;
-        }
-
         if (underline != null) {
             this.#underline = underline;
-        }
-
-        if (url != null) {
-            this.#url = url;
         }
     }
 
@@ -128,22 +109,6 @@ export class TextFormat {
         this.#leading = leading;
     }
 
-    getLeftMargin() {
-        return this.#leftMargin;
-    }
-
-    setLeftMargin(leftMargin) {
-        this.#leftMargin = leftMargin;
-    }
-
-    getRightMargin() {
-        return this.#rightMargin;
-    }
-
-    setRightMargin(rightMargin) {
-        this.#rightMargin = rightMargin;
-    }
-
     getSize() {
         return this.#size;
     }
@@ -152,27 +117,11 @@ export class TextFormat {
         this.#size = size;
     }
 
-    getTarget() {
-        return this.#target;
-    }
-
-    setTarget(target) {
-        this.#target = target;
-    }
-
     isUnderline() {
         return this.#underline;
     }
 
     setUnderline(underline) {
         this.#underline = underline;
-    }
-
-    getUrl() {
-        return this.#url;
-    }
-
-    setUrl(url) {
-        this.#url = url;
     }
 }
