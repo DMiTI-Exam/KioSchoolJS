@@ -226,9 +226,21 @@ flash and createjs below in the next sections. This is the general advices:
 *   JS doesn't support type casting between classes and in 99% cases it's not necessary. If you have an urgent need, 
 maybe you are doing something wrong, consult with the project architect.
 *   This project have ***additionalComponent*** package, which contains the self-written ***TextField*** component, and it is placed to the
-document after placing corresponding createjs element, however you need to use it only in the one of the next cases:
+document after placing corresponding createjs element. Contrasted with the ***createjs.Text*** class, adhere to the following
+rules:
     *   If you see, that a text created as ***TextField*** in flash doesn't change, use ***createjs.Text*** for this purpose.
-    *   If you need to dynamically change the text, use the custom ***TextField*** from the ***additionalComponent*** package.
+    *   If you need to dynamically change the text, use the custom ***TextField*** from the ***additionalComponent*** package
+        because it can be editable contrasting with the ***createjs.Text*** class.
+    *   Please, don't mix both classes. If you have already applied the ***TextField*** from the ***additionComponent*** package,
+        keep using it.
+    *   ***createjs.Text*** may be very useful for gui package classes.
+    
+    When you create ***TextField*** class, you have to pass ***createjs.Container*** to it. The ***TextField*** will appear 
+    in a browser page only after setting parent to this container.
+    
+    ***TextField*** only uses getters/setters for properties, it doesn't provide them directly, unlike the ***createjs.Text***.
+    Some properties can be different unlike flash, for example, ***tf.restrict = "0-9";*** can be replaced to ***tf.setPattern("0-9");***.
+    For specify another moments, please go to the class definition and look through field's documented comments.
 *   If you need to call the method from a context that hides ***this*** reference (such as ***EventListener***), use the next hack:
     ```js
     let self = this;

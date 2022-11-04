@@ -33,7 +33,7 @@ export class StringUtils {
      * чтобы текст был виден в текстовом поле
      */
     static toMultilineBySymbols(input, width, textFormat) {
-        let view = new TextField();
+        let view = new TextField(new createjs.Container());
         view.setWidth(width);
 
         let result = "";
@@ -62,7 +62,7 @@ export class StringUtils {
      * чтобы текст был виден в текстовом поле
      */
     static toMultiline(input, width, textFormat) {
-        let view = new TextField();
+        let view = new TextField(new createjs.Container());
         view.setWidth(width);
 
         let result = "";

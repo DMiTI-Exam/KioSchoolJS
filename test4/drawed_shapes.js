@@ -69,16 +69,26 @@ function init() {
     tf.setBorderColor("#1A9BFF");
     tf.setBackgroundColor("#5F8901");
     tf.setHeight(80);
+    tf.setMaxChars(30);
     tf.setMultiline(true);
+    tf.setPattern("0-9A-Z_ !");
+    //tf.setSelectable(false);
     tf.setText("Hello world!");
+    //tf.setType("dynamic");
+    //tf.setType("input");
     //tf.setTextColor("#BBBB00");
+    //tf.setVisible(false);
     tf.setWidth(200);
-    tf.setWordWrap(true);
+    tf.setWordWrap(false);
     tf.setX(10);
     tf.setY(10);
     tf.setTextFormat(formatter);
     c.x = 30;
     c.y = 110;
+    //tf.addEventListener("input", logIt);
+    /*tf.addEventListener("click", function (e) {
+        e.target.select();
+    });*/
 
     let comment = new ErrorComment();
     comment.x = 30;

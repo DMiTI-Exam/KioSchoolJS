@@ -1,22 +1,96 @@
 export class TextField {
+    /**
+     * Defines filling for background textarea color in hex format ("#000000")
+     */
     #backgroundColor;
+
+    /**
+     * Defines, whether the textarea have a border
+     */
     #border;
+
+    /**
+     * Sets color for textarea border in hex format ("#000000")
+     */
     #borderColor;
+
+    /**
+     * Textarea height in pixels
+     */
     #height;
+
+    /**
+     * Defines, how much chars you will be able to enter to the textarea
+     */
+    #maxChars;
+
+    /**
+     * Defines, whether you can use multiple lines for inputting text
+     */
     #multiline;
+
+    /**
+     * Restriction pattern, must contain symbols, that can be inputted to the textarea.
+     * For example: "0-9" or "0-9A-Z_ !" and so on
+     */
+    #pattern;
+
+    /**
+     * Defines, whether the textarea can be selected and whether text can be copied, pasted or cut
+     */
+    #selectable;
+
+    /**
+     * Inner text in the textarea
+     */
     #text;
+
+    /**
+     * May be "input" for changeable or "dynamic" for immutable textarea
+     */
+    #type;
+
+    /**
+     * Color for the text entered to the textarea in hex format ("#000000")
+     */
     #textColor;
+
+    /**
+     * Defines, whether the textarea will be visible
+     */
+    #visible;
+
+    /**
+     * Textarea width in pixels
+     */
     #width;
+
+    /**
+     * Defines, whether the text can be wrapped if the textarea line overflows or scrolls instead
+     */
     #wordWrap;
+
+    /**
+     * x coordinate relatively createjs element (0, 0) position
+     */
     #x;
+
+    /**
+     * y coordinate relatively createjs element (0, 0) position
+     */
     #y;
 
     #createJsElement;
     #input = null;
+
+    /**
+     * TextFormat class, contains additional attributes such as font, bold flag and so on
+     */
     #textFormat;
 
     constructor(createJsElement) {
         this.#createJsElement = createJsElement;
+        this.#createJsElement.name = "TextField";
 
         this.#input = document.createElement('textarea');
         this.#input.style.position = 'absolute';
@@ -76,6 +150,15 @@ export class TextField {
         this.#input.style.height = height + 'px';
     }
 
+    getMaxChars() {
+        return this.#maxChars;
+    }
+
+    setMaxChars(maxChars) {
+        this.#maxChars = maxChars;
+        this.#input.maxLength = maxChars;
+    }
+
     isMultiline() {
         return this.#multiline;
     }
@@ -89,13 +172,70 @@ export class TextField {
         }
     }
 
+    getPattern() {
+        return this.#pattern;
+    }
+
+    setPattern(pattern) {
+        this.#pattern = pattern;
+
+        this.addEventListener("keypress", function (e) {
+            let regex = new RegExp("^[" + pattern + "]+$");
+            const keyPressed = e.key;
+            if (!regex.test(keyPressed)) {
+                e.preventDefault();
+            }
+        });
+    }
+
+    isSelectable() {
+        return this.#selectable;
+    }
+
+    setSelectable(isSelectable) {
+        this.#selectable = isSelectable;
+
+        if (isSelectable) {
+            this.#input.removeEventListener("select", this.#removeSelection);
+            this.#input.removeEventListener("cut", this.#preventDefault);
+            this.#input.removeEventListener("copy", this.#preventDefault);
+            this.#input.removeEventListener("paste", this.#preventDefault);
+        } else {
+            this.addEventListener("select", this.#removeSelection);
+            this.addEventListener("cut", this.#preventDefault);
+            this.addEventListener("copy", this.#preventDefault);
+            this.addEventListener("paste", this.#preventDefault);
+        }
+    }
+
+    #removeSelection() {
+        window.getSelection().removeAllRanges();
+    }
+
+    #preventDefault(e) {
+        e.preventDefault();
+    }
+
     getText() {
-        return this.#text;
+        return this.#input.value;
     }
 
     setText(text) {
         this.#text = text;
         this.#input.value = text;
+    }
+
+    getType() {
+        return this.#type;
+    }
+
+    setType(type) {
+        this.#type = type;
+        if (type === "input") {
+            this.#input.removeAttribute("readOnly");
+        } else if (type === "dynamic") {
+            this.#input.readOnly = "true";
+        }
     }
 
     getTextColor() {
@@ -105,6 +245,19 @@ export class TextField {
     setTextColor(textColor) {
         this.#textColor = textColor;
         this.#input.style.color = textColor;
+    }
+
+    isVisible() {
+        return this.#visible;
+    }
+
+    setVisible(isVisible) {
+        this.#visible = isVisible;
+        if (isVisible) {
+            this.#input.style.display = "block";
+        } else {
+            this.#input.style.display = "none";
+        }
     }
 
     getWidth() {
@@ -123,9 +276,9 @@ export class TextField {
     setWordWrap(isWordWrap) {
         this.#wordWrap = isWordWrap;
         if (isWordWrap) {
-            this.#input.style.wordWrap = 'break-word';
+            this.#input.style.whiteSpace = 'normal';
         } else {
-            this.#input.style.wordWrap = 'normal';
+            this.#input.style.whiteSpace = 'nowrap';
         }
     }
 
@@ -186,5 +339,13 @@ export class TextField {
     getLineWidth() {
         let font = this.#textFormat.getSize() + 'px ' + this.#textFormat.getFont();
         return createjs.Text(this.#text, font, this.#textColor).lineWidth;
+    }
+
+    addEventListener(eventName, callFunction) {
+        this.#input.addEventListener(eventName, callFunction);
+    }
+
+    removeEventListener(eventName, callFunction) {
+        this.#input.removeEventListener(eventName, callFunction);
     }
 }

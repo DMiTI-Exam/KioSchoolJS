@@ -154,7 +154,7 @@ export class ComponentLayout {
             this.#xdimension = false;
             comp.getBounds().y = this._getValue(StringUtils.toArray(sBounds[1]));
 
-            this.#field = comp instanceof TextField;
+            this.#field = comp instanceof createjs.Text || comp.name === "TextField";
             this.#xdimension = true;
             comp.getBounds().width = this._getValue(StringUtils.toArray(sBounds[2]));
             this.#xdimension = false;
