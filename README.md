@@ -324,7 +324,7 @@ another animation.
 - [ ] Assignment
 - [ ] Dijkstra
 - [ ] Euler
-- [ ] Horse
+- [X] Horse
 - [ ] Huffman
 - [X] Kioschool (core)
 - [ ] Kruskal
