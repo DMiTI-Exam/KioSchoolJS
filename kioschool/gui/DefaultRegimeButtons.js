@@ -59,7 +59,7 @@ export class DefaultRegimeButtons extends createjs.Container {
         this.trainBtn = new createjs.Sprite(trainButtonSheet, "source");
         this.trainButtonHelper = new createjs.ButtonHelper(this.trainBtn,
             "source", "hover", "click", false, null, "hit");
-        this.trainBtn.x = 172;
+        this.trainBtn.x = 172 + 50;
 
         let controlButtonSheet = new createjs.SpriteSheet({
             framerate: 30,
@@ -75,7 +75,7 @@ export class DefaultRegimeButtons extends createjs.Container {
         this.controlBtn = new createjs.Sprite(controlButtonSheet, "source");
         this.controlButtonHelper = new createjs.ButtonHelper(this.controlBtn,
             "source", "hover", "click", false, null, "hit");
-        this.controlBtn.x = 344;
+        this.controlBtn.x = 344 + 100;
 
         this.addChild(this.demoBtn);
         this.addChild(this.trainBtn);

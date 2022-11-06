@@ -52,6 +52,7 @@ export class DefaultNavigationPanel extends INavigationPanel {
         this.#checkButtons.sendButtonHelper.enabled = enable;
         if (enable) {
             this.#checkButtons.send_btn.alpha = 1;
+            this.#checkButtons.send_btn.gotoAndPlay("source");
         } else {
             this.#checkButtons.send_btn.alpha = 0.5;
         }
@@ -66,6 +67,7 @@ export class DefaultNavigationPanel extends INavigationPanel {
         this.#buttons.prev_btn.mouseEnabled = !isFirst;
         if (this.#buttons.prevButtonHelper.enabled) {
             this.#buttons.prev_btn.alpha = 1;
+            this.#buttons.prev_btn.gotoAndPlay("source");
         } else {
             this.#buttons.prev_btn.alpha = 0.5;
         }
@@ -74,6 +76,7 @@ export class DefaultNavigationPanel extends INavigationPanel {
         this.#buttons.next_btn.mouseEnabled = step.next() != null;
         if (this.#buttons.nextButtonHelper.enabled) {
             this.#buttons.next_btn.alpha = 1;
+            this.#buttons.next_btn.gotoAndPlay("source");
         } else {
             this.#buttons.next_btn.alpha = 0.5;
         }

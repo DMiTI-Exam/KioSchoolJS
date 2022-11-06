@@ -49,6 +49,7 @@ export class DefaultHelpNavigationPanel extends createjs.Container {
         this.#buttons.prev_btn.mouseEnabled = HelpManager.instanceGetter().hasPrevious();
         if (this.#buttons.prevButtonHelper.enabled) {
             this.#buttons.prev_btn.alpha = 1;
+            this.#buttons.prev_btn.gotoAndPlay("source");
         } else {
             this.#buttons.prev_btn.alpha = 0.5;
         }
@@ -57,6 +58,7 @@ export class DefaultHelpNavigationPanel extends createjs.Container {
         this.#buttons.next_btn.mouseEnabled = HelpManager.instanceGetter().hasNext();
         if (this.#buttons.nextButtonHelper.enabled) {
             this.#buttons.next_btn.alpha = 1;
+            this.#buttons.next_btn.gotoAndPlay("source");
         } else {
             this.#buttons.next_btn.alpha = 0.5;
         }

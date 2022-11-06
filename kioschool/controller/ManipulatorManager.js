@@ -258,6 +258,9 @@ export class ManipulatorManager {
 
             if (displayObject instanceof createjs.ButtonHelper) {
                 displayObject.enabled = enabled;
+                if (enabled) {
+                    displayObject.target.gotoAndPlay("source");
+                }
             }
 
             if (displayObject instanceof createjs.Container) {

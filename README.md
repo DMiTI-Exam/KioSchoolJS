@@ -184,9 +184,9 @@ flash and createjs below in the next sections. This is the general advices:
     *   If your flash class extends ***SimpleButton***, you also need to extend ***createjs.Container***, but wrap the button to 
     ***createjs.HelpButton*** class (you can get the wrapped object with ***target*** property). It allows with little force add 
     listeners to buttons. Don't use the enabled property with complex logic (if you insert it into the ***selectButton*** method
-    of the ***DefaultRegimeButtons*** class, it breaks buttons), but for single button it works without problems. 
-    Note, that to use the ***mouseEnabled*** and ***visible*** properties, you need to call them from 
-    ***DisplayObject*** (***Sprite*** and so on):
+    of the ***DefaultRegimeButtons*** class, it breaks buttons), but if you want to use it, don't forget call the ***gotoAndPlay("source")***
+    method for returning to the source animation. Note, that to use the ***mouseEnabled*** and ***visible*** properties, 
+    you need to call them from ***DisplayObject*** (***Sprite*** and so on):
         ```js
         class SomeButton extends createjs.Container {
             someButtonHelper;

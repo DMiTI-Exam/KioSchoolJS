@@ -42,7 +42,7 @@ export class DefaultRegimePanel extends IRegimePanel {
         shape.graphics.setStrokeStyle(1);
         shape.graphics.beginStroke(DefaultRegimePanel.GRAY_LINE_COLOR);
         shape.graphics.beginFill(DefaultRegimePanel.GRAY_LINE_COLOR);
-        shape.drawRect(0, 0, width-1, DefaultRegimePanel.GRAY_LINE_WIDTH-1);
+        shape.graphics.drawRect(0, 0, width-1, DefaultRegimePanel.GRAY_LINE_WIDTH-1);
         shape.graphics.endFill();
         shape.graphics.endStroke();
         shape.graphics.setStrokeStyle(1);
