@@ -1,4 +1,6 @@
 export class TextField {
+    static #cachedInputs = new Map();
+
     /**
      * Defines filling for background textarea color in hex format ("#000000")
      */
@@ -88,9 +90,9 @@ export class TextField {
      */
     #textFormat;
 
-    constructor(createJsElement) {
+    constructor(createJsElement, name = "TextField") {
         this.#createJsElement = createJsElement;
-        this.#createJsElement.name = "TextField";
+        this.#createJsElement.name = name;
 
         this.#input = document.createElement('textarea');
         this.#input.style.position = 'absolute';
@@ -98,6 +100,7 @@ export class TextField {
         this.#input.style.top = 0 + 'px';
         this.#input.style.outline = 'none';
         this.#input.style.resize = 'none';
+        this.#input.style.background = 'transparent';
 
         let div = document.createElement('div');
         div.style.position = 'absolute';
@@ -108,6 +111,12 @@ export class TextField {
             div.style.top = createJsElement.y + 'px';
             document.body.appendChild(div);
         });
+
+        if (TextField.#cachedInputs.get(name) == null) {
+            TextField.#cachedInputs.set(name, []);
+        }
+
+        TextField.#cachedInputs.get(name).push(this);
     }
 
     getBackgroundColor() {
@@ -126,7 +135,8 @@ export class TextField {
     setBorder(hasBorder) {
         this.#border = hasBorder;
         if (hasBorder) {
-            this.#input.style.border = '1';
+            this.#input.style.border = '1px solid';
+            this.#input.style.borderColor = this.#borderColor;
         } else {
             this.#input.style.border = 'none';
         }
@@ -347,5 +357,34 @@ export class TextField {
 
     removeEventListener(eventName, callFunction) {
         this.#input.removeEventListener(eventName, callFunction);
+    }
+
+    static removeInputsByName(name) {
+        if (TextField.#cachedInputs.get(name) == null) {
+            return;
+        }
+
+        TextField.#cachedInputs.get(name).forEach(item => item.#input.remove());
+        TextField.#cachedInputs.set(name, []);
+    }
+
+    static hideVisible() {
+        for (let key of TextField.#cachedInputs.keys()) {
+            TextField.#cachedInputs.get(key).forEach(item => {
+                if (item.#input.style.display === 'block') {
+                    item.#input.style.visibility = 'hidden';
+                }
+            });
+        }
+    }
+
+    static showHidden() {
+        for (let key of TextField.#cachedInputs.keys()) {
+            TextField.#cachedInputs.get(key).forEach(item => {
+                if (item.#input.style.display === 'block') {
+                    item.#input.style.visibility = 'visible';
+                }
+            });
+        }
     }
 }

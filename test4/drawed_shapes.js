@@ -65,7 +65,7 @@ function init() {
 
     let c = new createjs.Container();
     let tf = new TextField(c);
-    tf.setBorder(false);
+    tf.setBorder(true);
     tf.setBorderColor("#1A9BFF");
     tf.setBackgroundColor("#5F8901");
     tf.setHeight(80);

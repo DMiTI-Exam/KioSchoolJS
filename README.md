@@ -111,7 +111,7 @@ class. When you face to a singleton class, please, follow the next steps:
         ```
     *   Then create getInstance method using the next pattern:
         ```js
-        static getInstance() {
+        static instanceGetter() {
             if (CommentManager.#instance == null) {
                 CommentManager.#canConstruct = true;
                 CommentManager.#instance = new CommentManager();
@@ -236,7 +236,14 @@ rules:
     *   ***createjs.Text*** may be very useful for gui package classes.
     
     When you create ***TextField*** class, you have to pass ***createjs.Container*** to it. The ***TextField*** will appear 
-    in a browser page only after setting parent to this container.
+    in a browser page only after setting parent to this container. Second argument (if you don't pass it, "TextField" by default)
+    is an alias of the current createjs element and text field. It will be cached and in further you will be able to use
+    ***removeInputsByName*** method for delete unusable text fields from a document by name (for example, when you need to clear current
+    stage and init it from the beginning).
+    
+    **Please, check after switching pages (from a demo view to a help or if the demo view have text fields with filled numbers, and you
+    reset the current state) that all text fields are invisible (don't remain visible where it's not needed). For hiding/showing the 
+    currently visible text fields you can use the *TextField.hideVisible* and *TextField.showHidden* static methods without deletion.**
     
     ***TextField*** only uses getters/setters for properties, it doesn't provide them directly, unlike the ***createjs.Text***.
     Some properties can be different unlike flash, for example, ***tf.restrict = "0-9";*** can be replaced to ***tf.setPattern("0-9");***.
