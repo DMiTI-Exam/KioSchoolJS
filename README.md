@@ -179,8 +179,11 @@ flash and createjs below in the next sections. This is the general advices:
         class View extends createjs.Container {
         }
         ```
-    *   If your flash class implements more than one interface besides extending just ***Sprite***, this is the most complicated
-    case. For solving it, consult with Multiple Inheritance section.
+    *   **There is the most applicable solution for classes that implements several interfaces and extends a class (also 
+    they can extend a class and implements exactly one interface and another variants): just add the *additionalInterfaces*
+    package to your module and define your own interface (with an appropriate name) that combines two or more another 
+    interface methods. Why this works? Since interfaces can't define a logic of the methods, and you change one interface 
+    to them combinations, it won't reflect to your class logic, simply appears new additional abstract methods.**
     *   If your flash class extends ***SimpleButton***, you also need to extend ***createjs.Container***, but wrap the button to 
     ***createjs.HelpButton*** class (you can get the wrapped object with ***target*** property). It allows with little force add 
     listeners to buttons. Don't use the enabled property with complex logic (if you insert it into the ***selectButton*** method
