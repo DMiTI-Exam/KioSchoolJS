@@ -32,6 +32,16 @@ export class TextField {
     #multiline;
 
     /**
+     * Can be scroll or hidden by horizontally
+     */
+    #overflowX;
+
+    /**
+     * Can be scroll or hidden by vertically
+     */
+    #overflowY;
+
+    /**
      * Restriction pattern, must contain symbols, that can be inputted to the textarea.
      * For example: "0-9" or "0-9A-Z_ !" and so on
      */
@@ -101,6 +111,9 @@ export class TextField {
         this.#input.style.outline = 'none';
         this.#input.style.resize = 'none';
         this.#input.style.background = 'transparent';
+        this.#input.style.border = '1px solid';
+        this.#input.style.borderColor = 'transparent';
+        this.#input.style.display = 'block';
 
         let div = document.createElement('div');
         div.style.position = 'absolute';
@@ -135,10 +148,10 @@ export class TextField {
     setBorder(hasBorder) {
         this.#border = hasBorder;
         if (hasBorder) {
-            this.#input.style.border = '1px solid';
+            this.#input.style.borderColor = 'black';
             this.#input.style.borderColor = this.#borderColor;
         } else {
-            this.#input.style.border = 'none';
+            this.#input.style.borderColor = 'transparent';
         }
     }
 
@@ -182,6 +195,34 @@ export class TextField {
         }
     }
 
+    getOverflowX() {
+        return this.#overflowX;
+    }
+
+    hideOnOverflowX(needHide) {
+        if (needHide) {
+            this.#overflowX = 'hidden';
+            this.#input.style.overflowX = 'hidden';
+        } else {
+            this.#overflowX = 'scroll';
+            this.#input.style.overflowX = 'scroll';
+        }
+    }
+
+    getOverflowY() {
+        return this.#overflowY;
+    }
+
+    hideOnOverflowY(needHide) {
+        if (needHide) {
+            this.#overflowY = 'hidden';
+            this.#input.style.overflowY = 'hidden';
+        } else {
+            this.#overflowX = 'scroll';
+            this.#input.style.overflowY = 'scroll';
+        }
+    }
+
     getPattern() {
         return this.#pattern;
     }
@@ -206,11 +247,13 @@ export class TextField {
         this.#selectable = isSelectable;
 
         if (isSelectable) {
+            this.#input.style.cursor = 'text';
             this.#input.removeEventListener("select", this.#removeSelection);
             this.#input.removeEventListener("cut", this.#preventDefault);
             this.#input.removeEventListener("copy", this.#preventDefault);
             this.#input.removeEventListener("paste", this.#preventDefault);
         } else {
+            this.#input.style.cursor = 'default';
             this.addEventListener("select", this.#removeSelection);
             this.addEventListener("cut", this.#preventDefault);
             this.addEventListener("copy", this.#preventDefault);
@@ -386,5 +429,23 @@ export class TextField {
                 }
             });
         }
+    }
+
+    static hideByName(name) {
+        if (TextField.#cachedInputs.get(name) == null) {
+            return;
+        }
+
+        TextField.#cachedInputs.get(name).forEach(item =>
+            item.#input.style.visibility = 'hidden');
+    }
+
+    static showByName(name) {
+        if (TextField.#cachedInputs.get(name) == null) {
+            return;
+        }
+
+        TextField.#cachedInputs.get(name).forEach(item =>
+            item.#input.style.visibility = 'visible');
     }
 }
