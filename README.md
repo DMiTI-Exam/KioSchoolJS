@@ -325,9 +325,8 @@ another animation.
 - [ ] Dijkstra
 - [ ] Euler
 - [X] Horse
-- [ ] Huffman
+- [X] Huffman
 - [X] Kioschool (core)
 - [ ] Kruskal
-- [ ] Lpca
 - [ ] Matching
 - [ ] Prim
