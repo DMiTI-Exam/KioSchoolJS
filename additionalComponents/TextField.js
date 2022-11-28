@@ -16,6 +16,8 @@ export class TextField {
      */
     #borderColor;
 
+    #glow;
+
     /**
      * Textarea height in pixels
      */
@@ -162,6 +164,24 @@ export class TextField {
     setBorderColor(bgColor) {
         this.#borderColor = bgColor;
         this.#input.style.borderColor = bgColor;
+    }
+
+    getGlow() {
+        return this.#glow;
+    }
+
+    setGlow(enable, x, y, blur, color) {
+        if (enable) {
+            this.#glow = x + 'px ' + y + 'px ' + blur + 'px ' + color;
+            this.#input.style.textShadow = this.#glow;
+            this.#input.style.borderColor = color;
+            this.#input.style.boxShadow = '0 0 ' + blur + 'px ' + color;
+        } else {
+            this.#glow = 'unset';
+            this.#input.style.textShadow = this.#glow;
+            this.#input.style.borderColor = this.#borderColor;
+            this.#input.style.boxShadow = 'none';
+        }
     }
 
     getHeight() {

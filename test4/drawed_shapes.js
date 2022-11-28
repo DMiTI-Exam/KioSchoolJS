@@ -82,6 +82,12 @@ function init() {
     tf.setWordWrap(false);
     tf.setX(10);
     tf.setY(10);
+    tf.addEventListener("mouseover", function () {
+        tf.setGlow(true, 0, 0, 18, '#E863E8');
+    });
+    tf.addEventListener("mouseout", function () {
+        tf.setGlow(false);
+    });
     tf.setTextFormat(formatter);
     c.x = 30;
     c.y = 110;
