@@ -327,6 +327,6 @@ another animation.
 - [X] Horse
 - [X] Huffman
 - [X] Kioschool (core)
-- [ ] Kruskal
+- [X] Kruskal
 - [ ] Matching
 - [ ] Prim
