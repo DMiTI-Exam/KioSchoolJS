@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-
+EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <title>Главная</title>
+    </head>
 
-    <title>Dijkstra</title>
-</head>
+    <body style="overflow-x: hidden;">
+        <h1 class="text-center">
+            Переписанные модули
+        </h1>
+        <div class="row justify-content-center">
+            <div class="list-group w-25">
+                <a href="/horse_module" class="list-group-item list-group-item-action text-center">Ход конём</a>
+                <a href="/dijkstra_module" class="list-group-item list-group-item-action text-center">Алгоритм Декстры</a>
+                <a href="/kruskal_module" class="list-group-item list-group-item-action text-center">Алгоритм Краскала</a>
+                <a href="/huffman_module" class="list-group-item list-group-item-action text-center">Алгоритм Хаффмана</a>
+            </div>
+        </div>
 
-<body>
-    <!--script type="module" src="test3/human_run.js"></script-->
-    <!--script type="text/javascript" src="test3/human_run.js"></script-->
-    <script type="module" src="test4/drawed_shapes.js"></script>
-    <!--<script type="module" src="{{folder}}/Main.js"></script>-->
-
-    <canvas id="testCanvas" width="850" height="750"></canvas>
-
-    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-    <!--script src="https://vscode.githubhelp.com/izerocs/createjstextinput/blob/HEAD/dev/TextInput.js"></script-->
-</body>
-
+        <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    </body>
 </html>
