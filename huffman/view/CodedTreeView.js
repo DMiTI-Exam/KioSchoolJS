@@ -30,15 +30,18 @@ export class CodedTreeView extends TreeView {
         let tfWord = new TextField(textFieldsContainer, "codedTreeView");
         let tfCode = new TextField(textFieldsContainer, "codedTreeView");
 
+        let xOffset = 10;
+        let yOffset = 10;
+
         tfWord.setText(HuffmanController.instanceGetter().firstWordGetter());
-        tfWord.setX(20);
-        tfWord.setY(490);
+        tfWord.setX(20 - xOffset);
+        tfWord.setY(490 - yOffset);
         tfWord.setType("dynamic");
         tfWord.setSelectable(false);
 
         tfCode.setText(HuffmanController.instanceGetter().firstWordCodeGetter());
-        tfCode.setX(110);
-        tfCode.setY(490);
+        tfCode.setX(110 - xOffset);
+        tfCode.setY(490 - yOffset);
 
         let textFormat = new TextFormat("Arial", 13, "#000000", true);
         tfWord.setTextFormat(textFormat);
@@ -46,8 +49,8 @@ export class CodedTreeView extends TreeView {
         if (ManipulatorManager.instanceGetter().currentStepGetter() instanceof BuildCodeStep) {
             tfCode.setBorder(true);
         }
-        tfCode.setHeight(15);
-        tfCode.setWidth(100);
+        tfCode.setHeight(30);
+        tfCode.setWidth(130);
 
         if (ManipulatorManager.instanceGetter().currentStepGetter() instanceof BuildCodeStep &&
             ManipulatorManager.instanceGetter().regimeGetter() !== ManipulatorManager.REGIME_DEMO) {

@@ -42,24 +42,28 @@ export class DijkstraVertexTableView extends View {
 
         let textFormat = new TextFormat("Arial", 12, "#000000", false, false, false,
             "center", null, 18);
-        this.tfName.setX(34);
-        this.tfName.setY(605);
+
+        let xOffset = -6;
+        let yOffset = -5;
+
+        this.tfName.setX(34 + xOffset);
+        this.tfName.setY(605 + yOffset);
         this.tfName.setWidth(33);
         this.tfName.setHeight(20);
         this.tfName.setType("dynamic");
         this.tfName.setSelectable(false);
         this.tfName.setTextFormat(textFormat);
 
-        this.tfLast.setX(34);
-        this.tfLast.setY(625);
+        this.tfLast.setX(34 + xOffset);
+        this.tfLast.setY(625 + yOffset);
         this.tfLast.setWidth(33);
         this.tfLast.setHeight(20);
         this.tfLast.setType("dynamic");
         this.tfLast.setSelectable(false);
         this.tfLast.setTextFormat(textFormat);
 
-        this.tfCurrent.setX(34);
-        this.tfCurrent.setY(645);
+        this.tfCurrent.setX(34 + xOffset);
+        this.tfCurrent.setY(645 + yOffset);
         this.tfCurrent.setWidth(33);
         this.tfCurrent.setHeight(20);
         this.tfCurrent.setTextFormat(textFormat);

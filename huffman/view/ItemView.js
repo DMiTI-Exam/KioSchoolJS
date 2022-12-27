@@ -11,19 +11,23 @@ export class ItemView extends createjs.Container {
     constructor(item) {
         super();
 
+        let xOffset = 6;
+        let yOffset = 6;
+        let whOffset = 4;
+
         this.#item = item;
         this.#itemShape = new createjs.Shape();
         this.addChild(this.#itemShape);
-        this.#tfSymbols.setX(15);
-        this.#tfSymbols.setY(55);
-        this.#tfSymbols.setWidth(15);
-        this.#tfSymbols.setHeight(15);
+        this.#tfSymbols.setX(15 - xOffset);
+        this.#tfSymbols.setY(55 - yOffset);
+        this.#tfSymbols.setWidth(15 + whOffset);
+        this.#tfSymbols.setHeight(15 + whOffset);
         this.#tfSymbols.hideOnOverflowY(true);
         this.#tfSymbols.setSelectable(false);
         this.#tfSymbols.setType("dynamic");
 
         let textFormat = new TextFormat("Arial", 13, "#000000", null, null,
-            null, null, 4);
+            null, null, 4, 18);
         this.#tfSymbols.setTextFormat(textFormat);
 
         let self = this;

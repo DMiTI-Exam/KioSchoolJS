@@ -31,13 +31,16 @@ export class NodeView extends createjs.Container {
 
         this.#node = node;
 
-        this.#tfSymbols.setWidth(45);
-        this.#tfWeight.setWidth(45);
-        this.#tfCode.setWidth(45);
+        let widthOffset = 3;
+        let heightOffset = 5;
 
-        this.#tfSymbols.setHeight(15);
-        this.#tfWeight.setHeight(15);
-        this.#tfCode.setHeight(15);
+        this.#tfSymbols.setWidth(45 + widthOffset);
+        this.#tfWeight.setWidth(45 + widthOffset);
+        this.#tfCode.setWidth(45 + widthOffset);
+
+        this.#tfSymbols.setHeight(15 + heightOffset);
+        this.#tfWeight.setHeight(15 + heightOffset);
+        this.#tfCode.setHeight(15 + heightOffset);
 
         let textFormat = new TextFormat("Arial", 13, "#000000", null, null,
             null, null, 3, 18);
@@ -47,14 +50,17 @@ export class NodeView extends createjs.Container {
         this.#nodeShape = new createjs.Shape();
         this.addChild(this.#nodeShape);
 
-        this.#tfSymbols.setX(15);
-        this.#tfSymbols.setY(55);
+        let xOffset = -6;
+        let yOffset = -6;
+
+        this.#tfSymbols.setX(15 + xOffset);
+        this.#tfSymbols.setY(55 + yOffset);
         this.#tfSymbols.hideOnOverflowY(true);
-        this.#tfWeight.setX(15);
-        this.#tfWeight.setY(75);
+        this.#tfWeight.setX(15 + xOffset);
+        this.#tfWeight.setY(75 + yOffset);
         this.#tfWeight.hideOnOverflowY(true);
-        this.#tfCode.setX(15);
-        this.#tfCode.setY(95);
+        this.#tfCode.setX(15 + xOffset);
+        this.#tfCode.setY(95 + yOffset);
         this.#tfCode.hideOnOverflowY(true);
 
         this.#tfSymbols.setSelectable(false);
@@ -221,7 +227,7 @@ export class NodeView extends createjs.Container {
         this.#tfCode.setText(this.#node.codeGetter());
 
         let textFormat = new TextFormat("Arial", 13, "#000000", true, null,
-            null, null, 3);
+            null, null, 3, 18);
         this.#tfSymbols.setTextFormat(textFormat);
     }
 

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="content_wrapper">
+        <div id="content">
+            <script type="module" src="{{folder}}/Main.js"></script>
+            <div id="canvasWrapper">
+                <canvas id="testCanvas" width="{{width}}" height="{{height}}"></canvas>
+            </div>
+            <div class="row justify-content-center">
+                <div class="list-group w-25 p-3">
+                    <a href="/translated_tasks" class="task_button m-1 w-100">Назад</a>
+                </div>
+            </div>
+        <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+        </div>
+    </div>
+{% endblock %}

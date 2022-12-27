@@ -116,6 +116,8 @@ export class TextField {
         this.#input.style.border = '1px solid';
         this.#input.style.borderColor = 'transparent';
         this.#input.style.display = 'block';
+        this.#input.style.padding = '0px';
+        this.#input.style.zIndex = '100';
 
         let div = document.createElement('div');
         div.style.position = 'absolute';
@@ -124,7 +126,8 @@ export class TextField {
         createJsElement.on("added", function (event) {
             div.style.left = createJsElement.x + 'px';
             div.style.top = createJsElement.y + 'px';
-            document.body.appendChild(div);
+            let canvas = document.getElementById("canvasWrapper");
+            canvas.appendChild(div);
         });
 
         if (TextField.#cachedInputs.get(name) == null) {
@@ -401,6 +404,7 @@ export class TextField {
 
         this.#input.style.lineHeight = textFormat.getLeading() + 'px';
 
+        this.#input.style.overflow = 'hidden';
         this.#input.style.fontSize = textFormat.getSize() + 'px';
 
         if (textFormat.isUnderline()) {

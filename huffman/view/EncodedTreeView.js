@@ -23,34 +23,47 @@ export class EncodedTreeView extends CodedTreeView {
         let textFieldContainer = new createjs.Container();
         let tfWord = new TextField(textFieldContainer, "encodedTreeView");
         tfWord.setText(HuffmanController.instanceGetter().encodedWordGetter());
-        tfWord.setY(490);
-        tfWord.setX(250 + 20 * HuffmanController.instanceGetter().itemsGetter().length + 20);
+
+        // decoded word
+
+        let xOffset = -15;
+        let yOffset = -7;
+
+        tfWord.setY(490 + yOffset);
+        tfWord.setX(250 + xOffset + 20 * HuffmanController.instanceGetter().itemsGetter().length + 20);
         tfWord.setType("dynamic");
         tfWord.setSelectable(false);
 
+        //xOffset = 0;
+        //yOffset = 0;
+
         this.#tfSymbol = new TextField(textFieldContainer, "encodedTreeView");
-        this.#tfSymbol.setY(490);
-        this.#tfSymbol.setX(250 + 20 * HuffmanController.instanceGetter().itemsGetter().length + 24 +
-            tfWord.getText().length * 7);
+        this.#tfSymbol.setY(490 + yOffset);
+        this.#tfSymbol.setX(250 + xOffset + 20 * HuffmanController.instanceGetter().itemsGetter().length + 24 +
+            tfWord.getText().length * 8);
         this.#tfSymbol.setType("dynamic");
         this.#tfSymbol.setSelectable(false);
-        console.log(this.#tfSymbol.getX());
 
-        let textFormat = new TextFormat("Arial", 13, "#000000", true);
+        let textFormat = new TextFormat("Arial", 13, "#000000", true, null, null, null, null, 18);
         tfWord.setTextFormat(textFormat);
         this.#tfSymbol.setBorder(true);
-        tfWord.setHeight(15);
+
+        let hOffset = 15;
+
+        tfWord.setHeight(15 + hOffset);
         tfWord.setWidth(80);
+
+        hOffset = 5;
 
         this.#tfSymbol.setTextFormat(textFormat);
         this.#tfSymbol.setWidth(20);
-        this.#tfSymbol.setHeight(15);
+        this.#tfSymbol.setHeight(15 + hOffset);
 
         HuffmanController.instanceGetter().buildItems();
 
         for (let i = 0; i < HuffmanController.instanceGetter().itemsGetter().length; i++) {
             HuffmanController.instanceGetter().itemsGetter()[i].viewGetter().y = 490;
-            HuffmanController.instanceGetter().itemsGetter()[i].viewGetter().x = 250+20*i;
+            HuffmanController.instanceGetter().itemsGetter()[i].viewGetter().x = 250 + 20 * i;
             workspace.addChild(HuffmanController.instanceGetter().itemsGetter()[i].viewGetter());
             HuffmanController.instanceGetter().itemsGetter()[i].viewGetter().update();
         }
