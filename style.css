@@ -1,0 +1,90 @@
+body {
+    background-color:#f9f6e3;
+}
+
+h1 {
+    font-weight: 600;
+    text-align: center;
+}
+
+p {
+    font-size: 50%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    color: #000000;
+}
+
+.menu_button {
+    background-color: #eb8c5f;
+    border-radius: 5px;
+    width: 100%;
+    border: none;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline;
+    font-size: 16px;
+}
+
+.menu_button:hover {
+    background-color: #ea5211;
+}
+
+.task_button {
+    background-color: #114258;
+    width: 200px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.eltech {
+    font-weight: 600;
+}
+
+#content_wrapper,
+#page_wrapper {
+    background-color: #FFFFFF;
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3), 0 0 4px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3), 0 0 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3), 0 0 4px rgba(0, 0, 0, 0.1);
+    width: 1000px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.navigation_bar {
+    background-color: #eb8c5f;
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3), 0 0 4px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3), 0 0 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3), 0 0 4px rgba(0, 0, 0, 0.1);
+    width: 1070px;
+    margin: 0 auto;
+    padding: 5px;
+    justify-content: space-between;
+    display: flex;
+}
+
+#main_menu {
+    width: 1088px;
+    margin: 0 auto;
+    padding: 0px;
+}
+
+#canvasWrapper {
+    position: relative;
+}
+
+
+.image {
+    align: left;
+    width: 169;
+}
+
+.header {
+    align: left;
+}

@@ -42,10 +42,10 @@ export class ChessCellView extends View {
         this.#tf.setBorderColor("#F8975B");
         this.#tf.setMaxChars(2);
         this.#tf.setPattern("0-9");
-        this.#tf.setX(width - 35);
-        this.#tf.setY(height + 15);
+        this.#tf.setX(width - 40);
+        this.#tf.setY(height + 8);
         this.#tf.setWidth(40);
-        this.#tf.setHeight(30);
+        this.#tf.setHeight(30 + 5);
         let textFormat = new TextFormat("Verdana", 24, "#F8975B", true,
             null, null, "left");
         this.#tf.setTextFormat(textFormat);
