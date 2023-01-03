@@ -10,9 +10,9 @@ import { HelpButtonBack } from "../kioschool/gui/HelpButtonBack.js";
 
 let canvas, stage;
 
-window.onload = function () {
+/*window.onload = function () {
     init();
-}
+}*/
 
 function init() {
     // create stage and point it to the canvas:

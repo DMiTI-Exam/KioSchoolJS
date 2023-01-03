@@ -61,16 +61,16 @@ export class Graph {
     getEdge(v1, v2) {
         for (let i = 0; i < this.#edges.length; i++) {
             let edge = this.#edges[i];
-            if (edge.sourceGetter().idGetter()== v1.idGetter() && edge.targetGetter().idGetter() == v2.idGetter()) {
+            if (edge.sourceGetter().idGetter() === v1.idGetter() && edge.targetGetter().idGetter() === v2.idGetter()) {
                 return edge;
             }
 
-            if (edge.sourceGetter().idGetter() == v2.idGetter() && edge.targetGetter().idGetter() == v1.idGetter()) {
+            if (edge.sourceGetter().idGetter() === v2.idGetter() && edge.targetGetter().idGetter() === v1.idGetter()) {
                 return edge;
             }
-
-            return null;
         }
+
+        return null;
     }
 
     /**
@@ -80,7 +80,7 @@ export class Graph {
         let sum = 0;
         for (let i = 0; i < this.#edges.length; i++) {
             let edge = this.#edges[i];
-            if (edge.sourceGetter().idGetter() == v1.idGetter() || edge.targetGetter().idGetter() == v1.idGetter()) {
+            if (edge.sourceGetter().idGetter() === v1.idGetter() || edge.targetGetter().idGetter() === v1.idGetter()) {
                 sum++;
             }
         }
@@ -112,11 +112,11 @@ export class Graph {
     }
 
     removeEdge(edge) {
-        let ar = this.#edges;
-        this.#edges = [];
+        let ar = this.edgesGetter();
+        this.edgesSetter([]);
         for (let e of ar) {
             if (e !== edge) {
-                edge.push(e);
+                this.edgesGetter().push(e);
             }
         }
     }
