@@ -170,17 +170,18 @@ export class TextField {
         return this.#glow;
     }
 
-    setGlow(enable, x, y, blur, color) {
+    setGlow(enable, x, y, blur, color, contrast) {
         if (enable) {
-            this.#glow = x + 'px ' + y + 'px ' + blur + 'px ' + color;
+            let startGlow = x + 'px ' + y + 'px ' + blur + 'px ' + color;
+            this.#glow = startGlow;
+            for (let i = 0; i < contrast - 1; ++i) {
+                this.#glow += ', ' + startGlow;
+            }
+
             this.#input.style.textShadow = this.#glow;
-            this.#input.style.borderColor = color;
-            this.#input.style.boxShadow = '0 0 ' + blur + 'px ' + color;
         } else {
-            this.#glow = 'unset';
+            this.#glow = 'none';
             this.#input.style.textShadow = this.#glow;
-            this.#input.style.borderColor = this.#borderColor;
-            this.#input.style.boxShadow = 'none';
         }
     }
 
