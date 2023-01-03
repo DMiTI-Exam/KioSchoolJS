@@ -322,7 +322,7 @@ another animation.
 
 ## Done modules
 - [ ] Assignment
-- [ ] Dijkstra
+- [X] Dijkstra
 - [ ] Euler
 - [X] Horse
 - [X] Huffman
