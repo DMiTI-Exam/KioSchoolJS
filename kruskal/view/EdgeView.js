@@ -157,14 +157,6 @@ export class EdgeView extends createjs.Container {
             col = Globals.COLOR_SEL_UNKNOWN;
         }
 
-        /*let result = new TextField(this);
-        result.setText("" + this.#edge.lengthGetter());
-        // TODO: what is autoSize???
-        // result.autoSize = TextFieldAutoSize.CENTER;
-        let resultFormat = new TextFormat(Globals.DEFAULT_FONT, 12 + (0 + (!this.#edge.lastGetter())) * 2,
-            col, !this.#edge.lastGetter());
-        result.setTextFormat(resultFormat);*/
-
         let font;
         if (!this.#edge.lastGetter()) {
             font = "bold ";
@@ -238,27 +230,21 @@ export class EdgeView extends createjs.Container {
 
         this.#movableRightEdge = value;
         let self = this;
-        if (this.#movableRightEdge) {
-            this.addEventListener("mousedown", function (e) {
+        this.addEventListener("mousedown", function (e) {
+            if (self.#movableRightEdge) {
                 self.#captureEdge(e, self);
-            });
-            this.stage.addEventListener("pressup", function () {
+            }
+        });
+        this.stage.addEventListener("pressup", function () {
+            if (self.#movableRightEdge) {
                 self.#uncaptureEdge(self);
-            });
-            this.stage.addEventListener("pressmove", function (e) {
+            }
+        });
+        this.stage.addEventListener("pressmove", function (e) {
+            if (self.#movableRightEdge) {
                 self.#stageMovement(e, self);
-            });
-        } else {
-            this.removeEventListener("mousedown", function (e) {
-                self.#captureEdge(e, self);
-            });
-            this.stage.removeEventListener("pressup", function () {
-                self.#uncaptureEdge(self);
-            });
-            this.stage.removeEventListener("pressmove", function (e) {
-                self.#stageMovement(e, self);
-            });
-        }
+            }
+        });
     }
 
     movableRightEdgeGetter() {
