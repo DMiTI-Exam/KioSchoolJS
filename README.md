@@ -323,7 +323,7 @@ another animation.
 ## Done modules
 - [ ] Assignment
 - [X] Dijkstra
-- [ ] Euler
+- [X] Euler
 - [X] Horse
 - [X] Huffman
 - [X] Kioschool (core)
