@@ -328,5 +328,5 @@ another animation.
 - [X] Huffman
 - [X] Kioschool (core)
 - [X] Kruskal
-- [ ] Matching
+- [X] Matching
 - [ ] Prim
