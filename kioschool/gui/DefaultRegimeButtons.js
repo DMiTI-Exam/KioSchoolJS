@@ -30,6 +30,12 @@ export class DefaultRegimeButtons extends createjs.Container {
     constructor() {
         super();
 
+        let hitArea = new createjs.Shape();
+        hitArea.graphics.beginFill("#FFFFFF");
+        hitArea.graphics.drawRect(0, 0, 172, 35);
+        hitArea.alpha = 0.01;
+        this.addChild(hitArea);
+
         let demoButtonSheet = new createjs.SpriteSheet({
             framerate: 30,
             "images": ["kioschool/_resource/demo_button.png"],
@@ -43,7 +49,7 @@ export class DefaultRegimeButtons extends createjs.Container {
 
         this.demoBtn = new createjs.Sprite(demoButtonSheet, "source");
         this.demoButtonHelper = new createjs.ButtonHelper(this.demoBtn,
-            "source", "hover", "click", false, null, "hit");
+            "source", "hover", "click", false, hitArea, "hit");
 
         let trainButtonSheet = new createjs.SpriteSheet({
             framerate: 30,
@@ -58,7 +64,7 @@ export class DefaultRegimeButtons extends createjs.Container {
 
         this.trainBtn = new createjs.Sprite(trainButtonSheet, "source");
         this.trainButtonHelper = new createjs.ButtonHelper(this.trainBtn,
-            "source", "hover", "click", false, null, "hit");
+            "source", "hover", "click", false, hitArea, "hit");
         this.trainBtn.x = 172 + 50;
 
         let controlButtonSheet = new createjs.SpriteSheet({
@@ -74,7 +80,7 @@ export class DefaultRegimeButtons extends createjs.Container {
 
         this.controlBtn = new createjs.Sprite(controlButtonSheet, "source");
         this.controlButtonHelper = new createjs.ButtonHelper(this.controlBtn,
-            "source", "hover", "click", false, null, "hit");
+            "source", "hover", "click", false, hitArea, "hit");
         this.controlBtn.x = 344 + 100;
 
         this.addChild(this.demoBtn);
