@@ -1,3 +1,5 @@
+import { Main } from "../../Main.js";
+
 export class ApplyButton extends createjs.Container {
     applyButtonHelper;
 
@@ -6,7 +8,7 @@ export class ApplyButton extends createjs.Container {
 
         let applyButtonSheet = new createjs.SpriteSheet({
             framerate: 30,
-            "images": ["kruskal/_resource/apply.png"],
+            "images": [Main.loader.getResult("41")],
             "frames": {"regX": 0, "height": 33, "count": 3, "regY": 0, "width": 33},
             "animations": {
                 "source": [0],

@@ -1,3 +1,5 @@
+import { Main } from "../../Main.js";
+
 export class NotApplyButton extends createjs.Container {
     notApplyButtonHelper;
 
@@ -6,7 +8,7 @@ export class NotApplyButton extends createjs.Container {
 
         let notApplyButtonSheet = new createjs.SpriteSheet({
             framerate: 30,
-            "images": ["kruskal/_resource/not_apply.png"],
+            "images": [Main.loader.getResult("45")],
             "frames": {"regX": 0, "height": 33, "count": 3, "regY": 0, "width": 33},
             "animations": {
                 "source": [0],

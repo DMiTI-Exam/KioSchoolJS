@@ -1,10 +1,11 @@
 import { Spider } from "./Spider.js";
+import { Main } from "../../Main.js";
 
 export class Page1 extends createjs.Container {
     constructor() {
         super();
 
-        let page1 = new createjs.Bitmap("kruskal/_resource/page1.png");
+        let page1 = new createjs.Bitmap(Main.loader.getResult("46"));
         page1.x = 20;
         page1.y = 5;
         this.addChild(page1);

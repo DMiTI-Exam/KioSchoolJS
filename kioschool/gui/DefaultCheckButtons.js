@@ -1,3 +1,5 @@
+import { Main } from "../../Main.js";
+
 /**
  * Представление панели навигации, предоставляемое по умолчанию
  */
@@ -23,7 +25,7 @@ export class DefaultCheckButtons extends createjs.Container {
 
         let sendButtonSheet = new createjs.SpriteSheet({
             framerate: 30,
-            "images": ["kioschool/_resource/send_check_button.png"],
+            "images": [Main.loader.getResult("10")],
             "frames": {"regX": 0, "height": 33, "count": 3, "regY": 0, "width": 142},
             "animations": {
                 "source": [0],
@@ -37,7 +39,7 @@ export class DefaultCheckButtons extends createjs.Container {
 
         let resetButtonSheet = new createjs.SpriteSheet({
             framerate: 30,
-            "images": ["kioschool/_resource/reset_check_button.png"],
+            "images": [Main.loader.getResult("9")],
             "frames": {"regX": 0, "height": 33, "count": 3, "regY": 0, "width": 126},
             "animations": {
                 "source": [0],

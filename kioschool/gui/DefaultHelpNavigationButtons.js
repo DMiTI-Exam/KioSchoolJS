@@ -1,3 +1,5 @@
+import { Main } from "../../Main.js";
+
 /**
  * Представление панели навигации, предоставляемое по умолчанию
  */
@@ -25,7 +27,7 @@ export class DefaultHelpNavigationButtons extends createjs.Container {
 
         let prevButtonSheet = new createjs.SpriteSheet({
             framerate: 30,
-            "images": ["kioschool/_resource/prev_navigation_button.png"],
+            "images": [Main.loader.getResult("8")],
             "frames": {"regX": 0, "height": 49, "count": 3, "regY": 0, "width": 49},
             "animations": {
                 "source": [0],
@@ -43,7 +45,7 @@ export class DefaultHelpNavigationButtons extends createjs.Container {
 
         let nextButtonSheet = new createjs.SpriteSheet({
             framerate: 30,
-            "images": ["kioschool/_resource/next_navigation_button.png"],
+            "images": [Main.loader.getResult("7")],
             "frames": {"regX": 0, "height": 49, "count": 3, "regY": 0, "width": 49},
             "animations": {
                 "source": [0],

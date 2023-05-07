@@ -1,3 +1,5 @@
+import { Main } from "../../Main.js";
+
 export class KruskalErrorComment extends createjs.Container {
     comment_txt;
 
@@ -9,7 +11,7 @@ export class KruskalErrorComment extends createjs.Container {
         this.comment_txt.y = 40;
         this.comment_txt.lineWidth = 230;
 
-        this.addChild(new createjs.Bitmap("kruskal/_resource/errorComment.png"));
+        this.addChild(new createjs.Bitmap(Main.loader.getResult("43")));
         this.addChild(this.comment_txt);
     }
 }

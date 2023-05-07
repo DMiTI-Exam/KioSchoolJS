@@ -6,6 +6,7 @@ import { ManipulatorManager } from "../../kioschool/controller/ManipulatorManage
 import { DijkstraGraphView } from "../view/DijkstraGraphView.js";
 import { DijkstraEdgeView } from "../view/DijkstraEdgeView.js";
 import { DijkstraVertexTableView } from "../view/DijkstraVertexTableView.js";
+import { Main } from "../../Main.js";
 
 /**
  * Карта города
@@ -14,15 +15,15 @@ export class CityMap extends createjs.Container {
     constructor() {
         super();
 
-        let map = new createjs.Bitmap("dijkstra/_resource/map.png");
+        let map = new createjs.Bitmap(Main.loader.getResult("16"));
         this.addChild(map);
 
         // edge pattern
-        let fill1_mc = new createjs.Bitmap("dijkstra/_resource/fill1_mc.png");
+        let fill1_mc = new createjs.Bitmap(Main.loader.getResult("14"));
         fill1_mc.name = "fill1_mc";
-        let fill2_mc = new createjs.Bitmap("dijkstra/_resource/fill2_mc.png");
+        let fill2_mc = new createjs.Bitmap(Main.loader.getResult("15"));
         fill2_mc.name = "fill2_mc";
-        let edgeBackground = new createjs.Bitmap("dijkstra/_resource/edge_background.png");
+        let edgeBackground = new createjs.Bitmap(Main.loader.getResult("13"));
         edgeBackground.regX = 21;
         edgeBackground.regY = 31.5;
         edgeBackground.y = 47.5;
@@ -303,15 +304,15 @@ export class CityMap extends createjs.Container {
         this.addChild(edge41);
 
         // circle pattern
-        let vFill1_mc = new createjs.Bitmap("dijkstra/_resource/VFill1_mc.png");
+        let vFill1_mc = new createjs.Bitmap(Main.loader.getResult("25"));
         vFill1_mc.name = "VFill1_mc";
         vFill1_mc.regX = 19;
         vFill1_mc.regY = 19;
-        let vFill2_mc = new createjs.Bitmap("dijkstra/_resource/VFill2_mc.png");
+        let vFill2_mc = new createjs.Bitmap(Main.loader.getResult("26"));
         vFill2_mc.name = "VFill2_mc";
         vFill2_mc.regX = 19;
         vFill2_mc.regY = 19;
-        let vFill3_mc = new createjs.Bitmap("dijkstra/_resource/VFill3_mc.png");
+        let vFill3_mc = new createjs.Bitmap(Main.loader.getResult("27"));
         vFill3_mc.name = "VFill3_mc";
         vFill3_mc.regX = 23;
         vFill3_mc.regY = 23;
@@ -321,7 +322,7 @@ export class CityMap extends createjs.Container {
         circleContainer.addChild(vFill3_mc);
 
         // library pattern
-        let libraryIcon = new createjs.Bitmap("dijkstra/_resource/VContent_library.png");
+        let libraryIcon = new createjs.Bitmap(Main.loader.getResult("22"));
         libraryIcon.regX = 11;
         libraryIcon.regY = 8.5;
         libraryIcon.name = "VContent_mc";
@@ -329,7 +330,7 @@ export class CityMap extends createjs.Container {
         libraryContainer.addChild(libraryIcon);
 
         // canteen pattern
-        let canteenIcon = new createjs.Bitmap("dijkstra/_resource/VContent_canteen.png");
+        let canteenIcon = new createjs.Bitmap(Main.loader.getResult("19"));
         canteenIcon.regX = 14;
         canteenIcon.regY = 9.5;
         canteenIcon.name = "VContent_mc";
@@ -337,7 +338,7 @@ export class CityMap extends createjs.Container {
         canteenContainer.addChild(canteenIcon);
 
         // refuel pattern
-        let refuelIcon = new createjs.Bitmap("dijkstra/_resource/VContent_refuel.png");
+        let refuelIcon = new createjs.Bitmap(Main.loader.getResult("23"));
         refuelIcon.regX = 7.5;
         refuelIcon.regY = 12.5;
         refuelIcon.name = "VContent_mc";
@@ -345,7 +346,7 @@ export class CityMap extends createjs.Container {
         refuelContainer.addChild(refuelIcon);
 
         // church pattern
-        let churchIcon = new createjs.Bitmap("dijkstra/_resource/VContent_church.png");
+        let churchIcon = new createjs.Bitmap(Main.loader.getResult("20"));
         churchIcon.regX = 10.5;
         churchIcon.regY = 14;
         churchIcon.name = "VContent_mc";
@@ -353,7 +354,7 @@ export class CityMap extends createjs.Container {
         churchContainer.addChild(churchIcon);
 
         // theater pattern
-        let theaterIcon = new createjs.Bitmap("dijkstra/_resource/VContent_theater.png");
+        let theaterIcon = new createjs.Bitmap(Main.loader.getResult("24"));
         theaterIcon.regX = 12.5;
         theaterIcon.regY = 10.5;
         theaterIcon.name = "VContent_mc";
@@ -361,7 +362,7 @@ export class CityMap extends createjs.Container {
         theaterContainer.addChild(theaterIcon);
 
         // hospital pattern
-        let hospitalIcon = new createjs.Bitmap("dijkstra/_resource/VContent_hospital.png");
+        let hospitalIcon = new createjs.Bitmap(Main.loader.getResult("21"));
         hospitalIcon.regX = 10.5;
         hospitalIcon.regY = 10.5;
         hospitalIcon.name = "VContent_mc";

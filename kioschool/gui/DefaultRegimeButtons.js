@@ -1,3 +1,5 @@
+import { Main } from "../../Main.js";
+
 /**
  * Кнопки смены режима манипулятора, используемые по умолчанию
  *
@@ -38,7 +40,7 @@ export class DefaultRegimeButtons extends createjs.Container {
 
         let demoButtonSheet = new createjs.SpriteSheet({
             framerate: 30,
-            "images": ["kioschool/_resource/demo_button.png"],
+            "images": [Main.loader.getResult("3")],
             "frames": {"regX": 0, "height": 35, "count": 3, "regY": 0, "width": 172},
             "animations": {
                 "source": [0],
@@ -53,7 +55,7 @@ export class DefaultRegimeButtons extends createjs.Container {
 
         let trainButtonSheet = new createjs.SpriteSheet({
             framerate: 30,
-            "images": ["kioschool/_resource/train_button.png"],
+            "images": [Main.loader.getResult("11")],
             "frames": {"regX": 0, "height": 35, "count": 3, "regY": 0, "width": 172},
             "animations": {
                 "source": [0],
@@ -69,7 +71,7 @@ export class DefaultRegimeButtons extends createjs.Container {
 
         let controlButtonSheet = new createjs.SpriteSheet({
             framerate: 30,
-            "images": ["kioschool/_resource/control_button.png"],
+            "images": [Main.loader.getResult("2")],
             "frames": {"regX": 0, "height": 35, "count": 3, "regY": 0, "width": 172},
             "animations": {
                 "source": [0],

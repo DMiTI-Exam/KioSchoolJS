@@ -15,19 +15,19 @@ def translated_tasks():
 
 @app.route("/horse_module")
 def hourse_module():
-    return render_template("module.html", folder="./horse", width="850", height="650", title="Ход конём")
+    return render_template("module.html", module_name="horse", width="850", height="650", title="Ход конём")
 
 @app.route("/huffman_module")
 def huffman_module():
-    return render_template("module.html", folder="./huffman", width="900", height="650", title="Алгоритм Хаффмана")
+    return render_template("module.html", module_name="huffman", width="900", height="650", title="Алгоритм Хаффмана")
 
 @app.route("/kruskal_module")
 def kruskal_module():
-    return render_template("module.html", folder="./kruskal", width="910", height="620", title="Алгоритм Краскала")
+    return render_template("module.html", module_name="kruskal", width="910", height="620", title="Алгоритм Краскала")
 
 @app.route("/dijkstra_module")
 def dijkstra_module():
-    return render_template("module.html", folder="./dijkstra", width="850", height="750", title="Алкгоритм Дейкстры")
+    return render_template("module.html", module_name="dijkstra", width="850", height="750", title="Алкгоритм Дейкстры")
 
 
 if __name__ == "__main__":

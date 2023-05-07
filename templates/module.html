@@ -3,7 +3,9 @@
 {% block content %}
     <div id="content_wrapper">
         <div id="content">
-            <script type="module" src="{{folder}}/Main.js"></script>
+            <input id="$module_name$" type="hidden" value="{{module_name}}"/>
+
+            <script type="module" src="../Main.js"></script>
             <div id="canvasWrapper">
                 <canvas id="testCanvas" width="{{width}}" height="{{height}}"></canvas>
             </div>
