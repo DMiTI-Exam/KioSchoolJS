@@ -329,4 +329,4 @@ another animation.
 - [X] Kioschool (core)
 - [X] Kruskal
 - [X] Matching
-- [ ] Prim
+- [X] Prim
