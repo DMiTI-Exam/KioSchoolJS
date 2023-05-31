@@ -1,8 +1,10 @@
+import { Main } from "../../Main.js";
+
 export class Page3 extends createjs.Container {
     constructor() {
         super();
 
-        let page3 = new createjs.Bitmap("matching/_resource/page3.png");
+        let page3 = new createjs.Bitmap(Main.loader.getResult("55"));
         page3.x = 30;
         page3.y = 10;
 

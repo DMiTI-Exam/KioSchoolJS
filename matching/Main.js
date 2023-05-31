@@ -7,84 +7,31 @@ import { AngryMan } from "./gui/AngryMan.js";
 import { ManipulatorManager } from "../kioschool/controller/ManipulatorManager.js";
 import { MatchingController } from "./controller/MatchingController.js";
 import { MatchingControlsFactory } from "./views/controls/MatchingControlsFactory.js";
-
-window.onload = function () {
-    init();
-}
-
-function init() {
-    let manifest = [
-        {src: "kioschool/_resource/comment.png", id: "1"},
-        {src: "kioschool/_resource/control_button.png", id: "2"},
-        {src: "kioschool/_resource/demo_button.png", id: "3"},
-        {src: "kioschool/_resource/error_comment.png", id: "4"},
-        {src: "kioschool/_resource/help_round_button.png", id: "5"},
-        {src: "kioschool/_resource/help_round_button_back.png", id: "6"},
-        {src: "kioschool/_resource/next_navigation_button.png", id: "7"},
-        {src: "kioschool/_resource/prev_navigation_button.png", id: "8"},
-        {src: "kioschool/_resource/reset_check_button.png", id: "9"},
-        {src: "kioschool/_resource/send_check_button.png", id: "10"},
-        {src: "kioschool/_resource/train_button.png", id: "11"},
-
-        {src: "matching/_resource/comment.png", id: "12"},
-        {src: "matching/_resource/error_comment.png", id: "13"},
-        {src: "matching/_resource/man.png", id: "14"},
-        {src: "matching/_resource/man_angry.png", id: "15"},
-        {src: "matching/_resource/page1.png", id: "16"},
-        {src: "matching/_resource/page2.png", id: "17"},
-        {src: "matching/_resource/page3.png", id: "18"}
-    ];
-
-    Main.loader = new createjs.LoadQueue(false);
-    Main.loader.addEventListener("complete", handleComplete);
-    Main.loader.loadManifest(manifest, true, "");
-}
-
-function handleComplete() {
-    let canvas = document.getElementById("testCanvas");
-    Main.stage = new createjs.Stage(canvas);
-
-    Main.stage.enableMouseOver(30);
-
-    HelpManager.instanceGetter().registerPage(new Page1());
-    HelpManager.instanceGetter().registerPage(new Page2());
-    HelpManager.instanceGetter().registerPage(new Page3());
-
-    let man = new Man();
-    man.scaleX = 0.55;
-    man.scaleY = 0.55;
-    man.y = 120;
-    man.x = 10;
-
-    let angryMan = new AngryMan();
-    angryMan.scaleX = 0.55;
-    angryMan.scaleY = 0.55;
-    angryMan.y = 120;
-    angryMan.x = 10;
-
-    ManipulatorManager.instanceGetter().init(Main.stage, 900, 600, MatchingController.instanceGetter(),
-        new MatchingControlsFactory(man, 0, 10, 80, 250, angryMan));
-
-    createjs.Ticker.on("tick", (_) => {
-        Main.stage.update();
-    });
-}
+import { Main as CommonMain } from "../Main.js";
 
 /**
 * Точка входа, регшистрация шагов и т.д.
-
 */
-export class Main extends createjs.Container {
-    static loader;
-    static stage;
-
+export class Main {
     constructor() {
-        super();
+        let manifest = [
+            {src: "comment.png", id: "49"},
+            {src: "error_comment.png", id: "50"},
+            {src: "man.png", id: "51"},
+            {src: "man_angry.png", id: "52"},
+            {src: "page1.png", id: "53"},
+            {src: "page2.png", id: "54"},
+            {src: "page3.png", id: "55"}
+        ];
 
-        let canvas = document.getElementById("testCanvas");
-        Main.stage = new createjs.Stage(canvas);
+        CommonMain.loader.addEventListener("complete", function() {
+            Main.startModule();
+        });
+        CommonMain.loader.loadManifest(manifest, true, "matching/_resource/");
+    }
 
-        Main.stage.enableMouseOver(30);
+    static startModule() {
+        CommonMain.loader.removeAllEventListeners();
 
         HelpManager.instanceGetter().registerPage(new Page1());
         HelpManager.instanceGetter().registerPage(new Page2());
@@ -102,11 +49,7 @@ export class Main extends createjs.Container {
         angryMan.y = 120;
         angryMan.x = 10;
 
-        ManipulatorManager.instanceGetter().init(Main.stage, 900, 600, MatchingController.instanceGetter(),
+        ManipulatorManager.instanceGetter().init(CommonMain.stage, 900, 600, MatchingController.instanceGetter(),
             new MatchingControlsFactory(man, 0, 10, 80, 250, angryMan));
-
-        createjs.Ticker.on("tick", (_) => {
-            Main.stage.update();
-        });
     }
 }

@@ -1,9 +1,9 @@
 import { Main as DijkstraMain } from "./dijkstra/Main.js";
-// TODO: import { Main as EulerMain } from "./euler/Main.js";
+import { Main as EulerMain } from "./euler/Main.js";
 import { Main as HorseMain } from "./horse/Main.js";
 import { Main as HuffmanMain } from "./huffman/Main.js";
 import { Main as KruskalMain } from "./kruskal/Main.js";
-// TODO: import { Main as MatchingMain } from "./matching/Main.js";
+import { Main as MatchingMain } from "./matching/Main.js";
 // TODO: import { Main as PrimMain } from "./prim/Main.js";
 
 window.onload = function () {
@@ -49,7 +49,7 @@ export class Main {
             new DijkstraMain();
         } else if (moduleName === 'euler') {
             // TODO: remove after all modules done, images [28 - 33]
-            // TODO: new EulerMain();
+            new EulerMain();
         } else if (moduleName === 'horse') {
             // TODO: remove after all modules done, images [34 - 38]
             new HorseMain();
@@ -60,8 +60,8 @@ export class Main {
             // TODO: remove after all modules done, images [41 - 48]
             new KruskalMain();
         } else if (moduleName === 'matching') {
-            // TODO: remove after all modules done, images [ - ]
-            // TODO: new MatchingMain();
+            // TODO: remove after all modules done, images [49 - 55]
+            new MatchingMain();
         } else if (moduleName === 'prim') {
             // TODO: remove after all modules done, images [ - ]
             // TODO: new PrimMain();

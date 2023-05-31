@@ -27,7 +27,16 @@ def kruskal_module():
 
 @app.route("/dijkstra_module")
 def dijkstra_module():
-    return render_template("module.html", module_name="dijkstra", width="850", height="750", title="Алкгоритм Дейкстры")
+    return render_template("module.html", module_name="dijkstra", width="850", height="750", title="Алгоритм Дейкстры")
+
+@app.route("/euler_module")
+def euler_module():
+    return render_template("module.html", module_name="euler", width="900", height="600", title="Алгоритм Эйлера")
+
+@app.route("/matching_module")
+def matching_module():
+    return render_template("module.html", module_name="matching",
+                           width="900", height="600", title="Алгоритм построения максимального паросочетания")
 
 
 if __name__ == "__main__":

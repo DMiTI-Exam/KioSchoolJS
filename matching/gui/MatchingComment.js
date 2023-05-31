@@ -1,3 +1,5 @@
+import { Main } from "../../Main.js";
+
 export class MatchingComment extends createjs.Container {
     comment_txt;
 
@@ -9,7 +11,7 @@ export class MatchingComment extends createjs.Container {
         this.comment_txt.y = 10;
         this.comment_txt.lineWidth = 189;
 
-        this.addChild(new createjs.Bitmap("matching/_resource/comment.png"));
+        this.addChild(new createjs.Bitmap(Main.loader.getResult("49")));
         this.addChild(this.comment_txt);
     }
 }
