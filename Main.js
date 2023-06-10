@@ -15,6 +15,10 @@ export class Main {
     static stage;
 
     constructor() {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js');
+        }
+
         let manifest = [
             {src: "comment.png", id: "1"},
             {src: "control_button.png", id: "2"},
@@ -29,7 +33,7 @@ export class Main {
             {src: "train_button.png", id: "11"}
         ];
 
-        Main.loader = new createjs.LoadQueue(true);
+        Main.loader = new createjs.LoadQueue(false);
         Main.loader.addEventListener("complete", function() {
             Main.startModule();
         });

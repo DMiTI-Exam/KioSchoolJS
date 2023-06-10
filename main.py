@@ -3,6 +3,7 @@ from flask import Flask, render_template
 
 
 app = Flask(__name__, static_folder="")
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 3600
 
 
 @app.route("/")
@@ -37,6 +38,12 @@ def euler_module():
 def matching_module():
     return render_template("module.html", module_name="matching",
                            width="900", height="600", title="Алгоритм построения максимального паросочетания")
+
+@app.after_request
+def add_cache_control_header(response):
+    response.cache_control.max_age = 3600
+    response.cache_control.public = True
+    return response
 
 
 if __name__ == "__main__":
