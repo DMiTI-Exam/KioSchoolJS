@@ -38,7 +38,7 @@ const cacheFirst = async ({ request, fallbackUrl }) => {
 self.addEventListener("fetch", (event) => {
     event.respondWith(
         cacheFirst({
-            request: event.request
+            request: event.request,
         })
     );
 });
