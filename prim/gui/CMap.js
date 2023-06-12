@@ -1,8 +1,10 @@
+import { Main } from "../../Main.js";
+
 export class CMap extends createjs.Container {
     constructor() {
         super();
 
-        let map = new createjs.Bitmap("prim/_resource/map.png");
+        let map = new createjs.Bitmap(Main.loader.getResult("57"));
         this.addChild(map);
 
         let textContainer = new createjs.Container();
@@ -130,7 +132,7 @@ export class CMap extends createjs.Container {
         this.addChild(textContainer);
 
         // Edge pattern
-        let way = new createjs.Bitmap("prim/_resource/way.png");
+        let way = new createjs.Bitmap(Main.loader.getResult("63"));
         way.name = "way_mc";
         way.regX = 0.5;
         way.regY = 95;
@@ -498,15 +500,15 @@ export class CMap extends createjs.Container {
         this.addChild(edge45);
 
         // Circle pattern
-        let vFill1_mc = new createjs.Bitmap("prim/_resource/VFill1_mc.png");
+        let vFill1_mc = new createjs.Bitmap(Main.loader.getResult("60"));
         vFill1_mc.name = "VFill1_mc";
         vFill1_mc.regX = 4.5;
         vFill1_mc.regY = 4.5;
-        let vFill2_mc = new createjs.Bitmap("prim/_resource/VFill2_mc.png");
+        let vFill2_mc = new createjs.Bitmap(Main.loader.getResult("61"));
         vFill2_mc.name = "VFill2_mc";
         vFill2_mc.regX = 4.5;
         vFill2_mc.regY = 4.5;
-        let vFill3_mc = new createjs.Bitmap("prim/_resource/VFill3_mc.png");
+        let vFill3_mc = new createjs.Bitmap(Main.loader.getResult("62"));
         vFill3_mc.name = "VFill3_mc";
         vFill3_mc.regX = 4.5;
         vFill3_mc.regY = 4.5;

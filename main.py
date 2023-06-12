@@ -39,6 +39,10 @@ def matching_module():
     return render_template("module.html", module_name="matching",
                            width="900", height="600", title="Алгоритм построения максимального паросочетания")
 
+@app.route("/prim_module")
+def prim_module():
+    return render_template("module.html", module_name="prim", width="1000", height="650", title="Алгоритм Прима")
+
 @app.after_request
 def add_cache_control_header(response):
     response.cache_control.max_age = 3600

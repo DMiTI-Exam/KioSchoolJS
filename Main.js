@@ -4,7 +4,7 @@ import { Main as HorseMain } from "./horse/Main.js";
 import { Main as HuffmanMain } from "./huffman/Main.js";
 import { Main as KruskalMain } from "./kruskal/Main.js";
 import { Main as MatchingMain } from "./matching/Main.js";
-// TODO: import { Main as PrimMain } from "./prim/Main.js";
+import { Main as PrimMain } from "./prim/Main.js";
 
 window.onload = function () {
     new Main();
@@ -49,26 +49,26 @@ export class Main {
 
         let moduleName = document.getElementById("$module_name$").value;
         if (moduleName === 'dijkstra') {
-            // TODO: remove after all modules done, images [12 - 27]
+            // images [12 - 27]
             new DijkstraMain();
         } else if (moduleName === 'euler') {
-            // TODO: remove after all modules done, images [28 - 33]
+            // images [28 - 33]
             new EulerMain();
         } else if (moduleName === 'horse') {
-            // TODO: remove after all modules done, images [34 - 38]
+            // images [34 - 38]
             new HorseMain();
         } else if (moduleName === 'huffman') {
-            // TODO: remove after all modules done, images [39 - 40]
+            // images [39 - 40]
             new HuffmanMain();
         } else if (moduleName === 'kruskal') {
-            // TODO: remove after all modules done, images [41 - 48]
+            // images [41 - 48]
             new KruskalMain();
         } else if (moduleName === 'matching') {
-            // TODO: remove after all modules done, images [49 - 55]
+            // images [49 - 55]
             new MatchingMain();
         } else if (moduleName === 'prim') {
-            // TODO: remove after all modules done, images [ - ]
-            // TODO: new PrimMain();
+            // images [56 - 63]
+            new PrimMain();
         }
 
         createjs.Ticker.on("tick", (_) => {
