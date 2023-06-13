@@ -43,6 +43,10 @@ def matching_module():
 def prim_module():
     return render_template("module.html", module_name="prim", width="1000", height="650", title="Алгоритм Прима")
 
+@app.route("/transpiler_doc")
+def transpiler_doc():
+    return render_template("transpiler_doc.html", title="Транспиляция")
+
 @app.after_request
 def add_cache_control_header(response):
     response.cache_control.max_age = 3600
